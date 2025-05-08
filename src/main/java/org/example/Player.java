@@ -4,24 +4,24 @@ public class Player {
     public int currentRoom;
     public int roomsDone;
 
-    public int getCurrentRoom(){
+    public int getCurrentRoom() {
         return currentRoom;
     }
 
-    public void setCurrentRoom(){
+    public void setCurrentRoom() {
 
     }
 
-    public void getStatus(){
+    public void getStatus() {
         System.out.println("Current Room: " + currentRoom);
         System.out.println("Rooms Done: " + roomsDone);
     }
 
-    public void setStatus(){
+    public void setStatus() {
 
     }
 
-    public void roomDone(){
+    public void roomDone() {
         roomsDone++;
     }
 }

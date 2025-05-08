@@ -1,20 +1,25 @@
 package org.example;
 
 public class Question {
-    public String questionText;
-    public Answer[] answers;
+    private String questionText;
+    private Answer[] answers;
 
     public Question(String questionText, String[] answerStrings) {
         this.questionText = questionText;
+        this.answers = new Answer[answerStrings.length];
 
-        for (int i = 0; i < answers.length; i++) {
+        for (int i = 0; i < answerStrings.length; i++) {
             this.answers[i] = new Answer(answerStrings[i]);
         }
 
-        answers[answers.length - 1].setCorrectness(true);
+        this.answers[answers.length - 1].setCorrectness(true);
     }
 
     public String getQuestionText() {
         return questionText;
+    }
+
+    public Answer[] getAnswers() {
+        return answers;
     }
 }

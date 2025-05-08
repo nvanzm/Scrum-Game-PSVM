@@ -1,7 +1,23 @@
 package org.example;
 
+import org.example.rooms.RoomPlanning;
+import java.util.Scanner;
+
 public class Main {
+
     public static void main(String[] args) {
-        System.out.println("Jiri fix dit, just like a good boyy!");
+        Scanner scanner = new Scanner(System.in);
+        RoomPlanning sprintPlanning = new RoomPlanning();
+
+        System.out.println("Naar welke kamer wil je gaan?");
+        String input = scanner.nextLine();
+
+        switch (input) {
+            case "Kamer 1":
+                sprintPlanning.handleQuestion();
+                break;
+            default:
+                System.out.println("Onbekende kamer.");
+        }
     }
 }
