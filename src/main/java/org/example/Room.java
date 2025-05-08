@@ -4,10 +4,11 @@ public abstract class Room {
     Question[] questions;
     Monster monster;
 
-    void clearMonster(){
+    public void clearMonster() {
 
     }
-    Monster getMonster(){
+
+    public Monster getMonster(){
         return monster;
     }
 }
