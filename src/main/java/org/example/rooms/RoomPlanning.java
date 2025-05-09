@@ -5,8 +5,6 @@ import org.example.Monster;
 import org.example.MultipleChoice;
 import org.example.Room;
 
-import java.util.Scanner;
-
 public class RoomPlanning extends Room {
     private String introduction;
     private MultipleChoice question;
@@ -24,7 +22,7 @@ public class RoomPlanning extends Room {
         this.answers = question.getAnswers();
     }
 
-    public void introduction(){
+    public void introduction() {
         System.out.println(introduction);
     }
 

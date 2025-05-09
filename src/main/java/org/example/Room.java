@@ -4,7 +4,8 @@ public abstract class Room {
     String introduction;
     MultipleChoice[] questions;
     Monster monster;
-    public void runRoom(){
+
+    public void runRoom() {
         introduction();
         handleQuestion();
     }
