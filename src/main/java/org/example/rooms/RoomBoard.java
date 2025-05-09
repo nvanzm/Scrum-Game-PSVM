@@ -1,10 +1,10 @@
 package org.example.rooms;
 
-import org.example.Question;
+import org.example.MultipleChoice;
 import org.example.Room;
 
 public class RoomBoard extends Room {
-    Question question;
+    MultipleChoice question;
 
     RoomBoard() {
         String[] answersTemp = {
@@ -15,6 +15,17 @@ public class RoomBoard extends Room {
                 "Boven de user stories, als overkoepelend element"
         };
 
-        this.question = new Question("Waar moet een “Epic” op het Scrum Board geplaatst worden?", answersTemp);
+        this.question = new MultipleChoice("Waar moet een “Epic” op het Scrum Board geplaatst worden?", answersTemp);
+    }
+    public void introduction() {
+
+    }
+
+    public void handleQuestion() {
+
+    }
+
+    public void handleAnswer() {
+
     }
 }

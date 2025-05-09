@@ -10,11 +10,11 @@ public class Main {
         RoomPlanning sprintPlanning = new RoomPlanning();
 
         System.out.println("Naar welke kamer wil je gaan?");
-        String input = scanner.nextLine();
+        String input = scanner.nextLine().toLowerCase();
 
         switch (input) {
-            case "Kamer 1":
-                sprintPlanning.handleQuestion();
+            case "kamer 1":
+                sprintPlanning.runRoom();
                 break;
             default:
                 System.out.println("Onbekende kamer.");

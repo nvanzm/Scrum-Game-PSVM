@@ -1,10 +1,10 @@
 package org.example.rooms;
 
-import org.example.Question;
+import org.example.MultipleChoice;
 import org.example.Room;
 
 public class RoomReview extends Room {
-    Question question;
+    MultipleChoice question;
 
     RoomReview() {
         String[] answersTemp = {
@@ -15,6 +15,17 @@ public class RoomReview extends Room {
                 "Het product tonen en feedback van stakeholders verzamelen"
         };
 
-        this.question = new Question("Wat is een juist doel van een Sprint Review?", answersTemp);
+        this.question = new MultipleChoice("Wat is een juist doel van een Sprint Review?", answersTemp);
+    }
+    public void introduction() {
+
+    }
+
+    public void handleQuestion() {
+
+    }
+
+    public void handleAnswer() {
+
     }
 }

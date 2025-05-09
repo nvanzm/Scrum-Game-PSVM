@@ -1,10 +1,10 @@
 package org.example.rooms;
 
-import org.example.Question;
+import org.example.MultipleChoice;
 import org.example.Room;
 
 public class RoomTia extends Room {
-    Question question;
+    MultipleChoice question;
 
     RoomTia() {
         String[] answersTemp = {
@@ -15,6 +15,17 @@ public class RoomTia extends Room {
                 "Flexibel en iteratief waarde leveren met continue verbetering"
         };
 
-        this.question = new Question("Wat is het hoofddoel van Scrum binnen een team?", answersTemp);
+        this.question = new MultipleChoice("Wat is het hoofddoel van Scrum binnen een team?", answersTemp);
+    }
+    public void introduction() {
+
+    }
+
+    public void handleQuestion() {
+
+    }
+
+    public void handleAnswer() {
+
     }
 }

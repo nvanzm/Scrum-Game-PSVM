@@ -1,12 +1,16 @@
 package org.example;
 
 public abstract class Room {
-    Question[] questions;
+    String introduction;
+    MultipleChoice[] questions;
     Monster monster;
-
-    public void clearMonster() {
-
+    public void runRoom(){
+        introduction();
+        handleQuestion();
     }
+
+    public abstract void handleQuestion();
+    public abstract void introduction();
 
     public Monster getMonster(){
         return monster;

@@ -1,10 +1,10 @@
 package org.example.rooms;
 
-import org.example.Question;
+import org.example.MultipleChoice;
 import org.example.Room;
 
 public class RoomRetrospective extends Room {
-    Question question;
+    MultipleChoice question;
 
     RoomRetrospective() {
         String[] answersTemp = {
@@ -15,6 +15,17 @@ public class RoomRetrospective extends Room {
                 "We moeten het Scrum Board beter bijhouden en dagelijks afstemmen"
         };
 
-        this.question = new Question("Waar moet een “Epic” op het Scrum Board geplaatst worden?", answersTemp);
+        this.question = new MultipleChoice("Waar moet een “Epic” op het Scrum Board geplaatst worden?", answersTemp);
+    }
+    public void introduction() {
+
+    }
+
+    public void handleQuestion() {
+
+    }
+
+    public void handleAnswer() {
+
     }
 }

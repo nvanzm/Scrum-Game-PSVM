@@ -1,9 +1,9 @@
 package org.example;
 
 public class Monster {
-    Question question;
+    MultipleChoice question;
 
-    Monster (Question question) {
+    Monster (MultipleChoice question) {
         this.question = question;
     }
 }

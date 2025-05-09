@@ -1,10 +1,10 @@
 package org.example.rooms;
 
-import org.example.Question;
+import org.example.MultipleChoice;
 import org.example.Room;
 
 public class RoomDaily extends Room {
-    Question question;
+    MultipleChoice question;
 
     RoomDaily() {
         String[] answersTemp = {
@@ -15,6 +15,18 @@ public class RoomDaily extends Room {
                 "Een Developer"
         };
 
-        this.question = new Question("Welk teamlid zou het volgende zeggen: “Ik loop vast op een bug en heb hulp nodig”?", answersTemp);
+        this.question = new MultipleChoice("Welk teamlid zou het volgende zeggen: “Ik loop vast op een bug en heb hulp nodig”?", answersTemp);
+    }
+
+    public void introduction() {
+
+    }
+
+    public void handleQuestion() {
+
+    }
+
+    public void handleAnswer() {
+
     }
 }
