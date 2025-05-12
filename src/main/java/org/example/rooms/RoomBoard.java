@@ -1,12 +1,16 @@
 package org.example.rooms;
 
+import org.example.Answer;
+import org.example.Monster;
 import org.example.MultipleChoice;
 import org.example.Room;
 
 public class RoomBoard extends Room {
-    MultipleChoice question;
+    private String introduction;
+    private MultipleChoice question;
+    private Answer[] answers;
 
-    RoomBoard() {
+    public RoomBoard() {
         String[] answersTemp = {
                 //Laatste antwoord is correct.
                 "In de kolom ‘Done’",
@@ -15,17 +19,21 @@ public class RoomBoard extends Room {
                 "Boven de user stories, als overkoepelend element"
         };
 
+        this.introduction = "Welkom in de Scrumboard Kamer!";
         this.question = new MultipleChoice("Waar moet een “Epic” op het Scrum Board geplaatst worden?", answersTemp);
+        this.answers = question.getAnswers();
     }
-    public void introduction() {
 
+    public void introduction() {
+        System.out.println(introduction);
     }
 
     public void handleQuestion() {
-
+        question.askQuestion();
     }
 
-    public void handleAnswer() {
-
+    @Override
+    public Monster getMonster() {
+        return null;
     }
 }

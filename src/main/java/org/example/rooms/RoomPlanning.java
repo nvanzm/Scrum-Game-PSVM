@@ -12,11 +12,13 @@ public class RoomPlanning extends Room {
 
     public RoomPlanning() {
         String[] answersTemp = {
+                //Laatste antwoord is correct.
                 "Het team bepaalt hoeveel werk ze aankunnen",
                 "Het team selecteert user stories uit de product backlog",
                 "Het team splitst stories op in taken",
                 "De Product Owner schrijft een uitgebreid eindrapport"
         };
+
         this.introduction = "Welkom in de Planningkamer!";
         this.question = new MultipleChoice("Welke taak hoort NIET thuis in de sprintplanning?", answersTemp);
         this.answers = question.getAnswers();

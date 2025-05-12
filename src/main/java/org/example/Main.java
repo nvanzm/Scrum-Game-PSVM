@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.rooms.RoomPlanning;
+import org.example.rooms.*;
 
 import java.util.Scanner;
 
@@ -9,12 +9,15 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
+        //Player moet de huidige status kunnen bijwerken en ophalen (Database??)
+        //Player player = new Player();
+
         Room sprintPlanning = new RoomPlanning();
-        Room dailyScrum = new RoomPlanning();
-        Room scrumBoard = new RoomPlanning();
-        Room sprintReview = new RoomPlanning();
-        Room sprintRetrospective = new RoomPlanning();
-        Room finaleTia = new RoomPlanning();
+        Room dailyScrum = new RoomDaily();
+        Room scrumBoard = new RoomBoard();
+        Room sprintReview = new RoomReview();
+        Room sprintRetrospective = new RoomRetrospective();
+        Room finaleTia = new RoomTia();
 
         System.out.println("Naar welke kamer wil je gaan?");
         String input = scanner.nextLine().toLowerCase();

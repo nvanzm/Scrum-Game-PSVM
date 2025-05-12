@@ -1,12 +1,16 @@
 package org.example.rooms;
 
+import org.example.Answer;
+import org.example.Monster;
 import org.example.MultipleChoice;
 import org.example.Room;
 
 public class RoomReview extends Room {
-    MultipleChoice question;
+    private String introduction;
+    private MultipleChoice question;
+    private Answer[] answers;
 
-    RoomReview() {
+    public RoomReview() {
         String[] answersTemp = {
                 //Laatste antwoord is correct.
                 "Leren van teamproblemen en verbeteren van samenwerking",
@@ -15,17 +19,21 @@ public class RoomReview extends Room {
                 "Het product tonen en feedback van stakeholders verzamelen"
         };
 
+        this.introduction = "Welkom in de Sprint Review Kamer!";
         this.question = new MultipleChoice("Wat is een juist doel van een Sprint Review?", answersTemp);
+        this.answers = question.getAnswers();
     }
-    public void introduction() {
 
+    public void introduction() {
+        System.out.println(introduction);
     }
 
     public void handleQuestion() {
-
+        question.askQuestion();
     }
 
-    public void handleAnswer() {
-
+    @Override
+    public Monster getMonster() {
+        return null;
     }
 }

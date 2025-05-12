@@ -1,12 +1,16 @@
 package org.example.rooms;
 
+import org.example.Answer;
+import org.example.Monster;
 import org.example.MultipleChoice;
 import org.example.Room;
 
 public class RoomTia extends Room {
-    MultipleChoice question;
+    private String introduction;
+    private MultipleChoice question;
+    private Answer[] answers;
 
-    RoomTia() {
+    public RoomTia() {
         String[] answersTemp = {
                 //Laatste antwoord is correct.
                 "Zorgen dat taken sneller klaar zijn, ongeacht kwaliteit",
@@ -15,17 +19,21 @@ public class RoomTia extends Room {
                 "Flexibel en iteratief waarde leveren met continue verbetering"
         };
 
+        this.introduction = "Welkom in de Finale TIA Kamer!";
         this.question = new MultipleChoice("Wat is het hoofddoel van Scrum binnen een team?", answersTemp);
+        this.answers = question.getAnswers();
     }
-    public void introduction() {
 
+    public void introduction() {
+        System.out.println(introduction);
     }
 
     public void handleQuestion() {
-
+        question.askQuestion();
     }
 
-    public void handleAnswer() {
-
+    @Override
+    public Monster getMonster() {
+        return null;
     }
 }
