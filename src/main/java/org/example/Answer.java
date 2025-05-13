@@ -4,8 +4,9 @@ public class Answer {
     private String answerText;
     private boolean isCorrect;
 
-    public Answer(String answerString) {
+    public Answer(String answerString, boolean isCorrect) {
         this.answerText = answerString;
+        this.isCorrect = isCorrect;
     }
 
     public String getAnswerText() {

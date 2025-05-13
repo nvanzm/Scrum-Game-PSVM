@@ -1,5 +1,5 @@
 package org.example;
 
 public interface QuestionBehavior {
-    void askQuestion();
+    void askQuestion(Question question);
 }

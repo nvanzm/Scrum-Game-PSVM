@@ -2,7 +2,6 @@ package org.example;
 
 public abstract class Room {
     String introduction;
-    MultipleChoice[] questions;
     Monster monster;
 
     public void runRoom() {

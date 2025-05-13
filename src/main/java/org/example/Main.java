@@ -1,23 +1,27 @@
 package org.example;
-
 import org.example.rooms.*;
-
+import org.example.strategies.*;
 import java.util.Scanner;
+import org.example.Question;
+
+
 
 public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
+        MultipleChoice multipleChoice = new MultipleChoice();
+        FillInTheBlank fillInTheBlank = new FillInTheBlank();
+        Puzzle puzzle = new Puzzle();
         //Player moet de huidige status kunnen bijwerken en ophalen (Database??)
         //Player player = new Player();
 
-        Room sprintPlanning = new RoomPlanning();
-        Room dailyScrum = new RoomDaily();
-        Room scrumBoard = new RoomBoard();
-        Room sprintReview = new RoomReview();
-        Room sprintRetrospective = new RoomRetrospective();
-        Room finaleTia = new RoomTia();
+        Room sprintPlanning = new RoomPlanning(multipleChoice);
+        Room dailyScrum = new RoomDaily(fillInTheBlank);
+        Room scrumBoard = new RoomBoard(multipleChoice);
+        Room sprintReview = new RoomReview(multipleChoice);
+        Room sprintRetrospective = new RoomRetrospective(multipleChoice);
+        Room finaleTia = new RoomTia(multipleChoice);
 
         System.out.println("Naar welke kamer wil je gaan?");
         String input = scanner.nextLine().toLowerCase();

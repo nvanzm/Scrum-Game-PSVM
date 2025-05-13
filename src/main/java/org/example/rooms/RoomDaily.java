@@ -1,27 +1,16 @@
 package org.example.rooms;
 
-import org.example.Answer;
-import org.example.Monster;
-import org.example.MultipleChoice;
-import org.example.Room;
+import org.example.*;
 
 public class RoomDaily extends Room {
     private String introduction;
-    private MultipleChoice question;
-    private Answer[] answers;
+    private QuestionBehavior questionType;
+    private Answer answer = new Answer("Een developer", true);
+    private Question question = new Question("Welk teamlid zou het volgende zeggen: “Ik loop vast op een bug en heb hulp nodig”?", answer);
 
-    public RoomDaily() {
-        String[] answersTemp = {
-                //Laatste antwoord is correct.
-                "De Scrum Master",
-                "De Product Owner",
-                "De Stakeholder",
-                "Een Developer"
-        };
-
+    public RoomDaily(QuestionBehavior questionType) {
         this.introduction = "Welkom in de Daily Standup Kamer!";
-        this.question = new MultipleChoice("Welk teamlid zou het volgende zeggen: “Ik loop vast op een bug en heb hulp nodig”?", answersTemp);
-        this.answers = question.getAnswers();
+        this.questionType = questionType;
     }
 
     public void introduction() {
@@ -29,7 +18,7 @@ public class RoomDaily extends Room {
     }
 
     public void handleQuestion() {
-        question.askQuestion();
+        questionType.askQuestion(question);
     }
 
     @Override

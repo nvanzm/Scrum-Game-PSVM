@@ -1,27 +1,20 @@
 package org.example.rooms;
 
-import org.example.Answer;
-import org.example.Monster;
-import org.example.MultipleChoice;
-import org.example.Room;
+import org.example.*;
 
 public class RoomTia extends Room {
     private String introduction;
-    private MultipleChoice question;
-    private Answer[] answers;
+    private QuestionBehavior questionType;
+    private Question question = new Question("Wat is het hoofddoel van Scrum binnen een team?", new String[]{
+            "Zorgen dat taken sneller klaar zijn, ongeacht kwaliteit",
+            "Een streng plan opleggen dat altijd gevolgd moet worden",
+            "Werknemers controleren met dagelijkse statusrapporten",
+            "Flexibel en iteratief waarde leveren met continue verbetering"
+    });
 
-    public RoomTia() {
-        String[] answersTemp = {
-                //Laatste antwoord is correct.
-                "Zorgen dat taken sneller klaar zijn, ongeacht kwaliteit",
-                "Een streng plan opleggen dat altijd gevolgd moet worden",
-                "Werknemers controleren met dagelijkse statusrapporten",
-                "Flexibel en iteratief waarde leveren met continue verbetering"
-        };
-
+    public RoomTia(QuestionBehavior questionType) {
         this.introduction = "Welkom in de Finale TIA Kamer!";
-        this.question = new MultipleChoice("Wat is het hoofddoel van Scrum binnen een team?", answersTemp);
-        this.answers = question.getAnswers();
+        this.questionType = questionType;
     }
 
     public void introduction() {
@@ -29,7 +22,7 @@ public class RoomTia extends Room {
     }
 
     public void handleQuestion() {
-        question.askQuestion();
+        questionType.askQuestion(question);
     }
 
     @Override
