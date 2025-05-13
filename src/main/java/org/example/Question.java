@@ -15,6 +15,7 @@ public class Question {
     public Question(String questionText, Answer answerC) {
         this.questionText = questionText;
         this.answerC = answerC;
+        answerC.setCorrectness(true);
     }
 
     public String getQuestionText() {
@@ -25,7 +26,11 @@ public class Question {
         return answers;
     }
 
-    public String getCorrectAnswer() {
+    public String getCorrectAnswerSingle(){
+        return answerC.getAnswerText();
+    }
+
+    public String getCorrectAnswerFromList() {
         for (Answer answer : answers) {
             if(answer.getCorrectness()){
                 return answer.getAnswerText();

@@ -13,7 +13,7 @@ public class FillInTheBlank implements QuestionBehavior {
 
         String userInput = scanner.nextLine();
 
-        if (userInput.equalsIgnoreCase(question.getCorrectAnswer())) {
+        if (userInput.equalsIgnoreCase(question.getCorrectAnswerSingle())) {
             System.out.println("Correct!");
         } else {
             System.out.println("Helaas, dat is niet juist.");

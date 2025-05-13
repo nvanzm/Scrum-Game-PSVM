@@ -14,7 +14,7 @@ public class Puzzle implements QuestionBehavior {
         System.out.println("Probeer de termen en definities te koppelen:");
         String userInput = scanner.nextLine();
 
-        if (userInput.equalsIgnoreCase(question.getCorrectAnswer())) {
+        if (userInput.equalsIgnoreCase(question.getCorrectAnswerFromList())) {
             System.out.println("Correct!");
         } else {
             System.out.println("Helaas, dat is niet juist.");

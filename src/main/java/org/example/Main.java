@@ -2,8 +2,6 @@ package org.example;
 import org.example.rooms.*;
 import org.example.strategies.*;
 import java.util.Scanner;
-import org.example.Question;
-
 
 
 public class Main {
