@@ -11,7 +11,7 @@ public class Question {
         for (int i = 0; i < answerTexts.length; i++) {
             this.answers[i] = new Answer(answerTexts[i], false); // Stel de juistheid tijdelijk in op false
         }
-        answers[correctAnswer-1].setCorrectness(true);
+        answers[correctAnswer -1].setCorrectness(true);
     }
     public Question(String questionText, Answer answerC) {
         this.questionText = questionText;

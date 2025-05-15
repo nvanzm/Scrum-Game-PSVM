@@ -10,12 +10,11 @@ public class RoomBoard extends Room {
             "Het team selecteert user stories uit de product backlog",
             "Het team splitst stories op in taken",
             "De Product Owner schrijft een uitgebreid eindrapport"
-    },1);
+    },4);
 
     public RoomBoard(QuestionBehavior questionType) {
         this.introduction = "Welkom in de Scrumboard Kamer!";
         this.questionType = questionType;
-
     }
 
     public void introduction() {

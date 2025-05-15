@@ -10,7 +10,7 @@ public class RoomTia extends Room {
             "Een streng plan opleggen dat altijd gevolgd moet worden",
             "Werknemers controleren met dagelijkse statusrapporten",
             "Flexibel en iteratief waarde leveren met continue verbetering"
-    },1);
+    },4);
 
     public RoomTia(QuestionBehavior questionType) {
         this.introduction = "Welkom in de Finale TIA Kamer!";
