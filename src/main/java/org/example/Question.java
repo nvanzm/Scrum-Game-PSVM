@@ -5,12 +5,13 @@ public class Question {
     private Answer[] answers;
     private Answer answerC;
 
-    public Question(String questionText, String[] answerTexts) {
+    public Question(String questionText, String[] answerTexts, int correctAnswer) {
         this.questionText = questionText;
         this.answers = new Answer[answerTexts.length];
         for (int i = 0; i < answerTexts.length; i++) {
             this.answers[i] = new Answer(answerTexts[i], false); // Stel de juistheid tijdelijk in op false
         }
+        answers[correctAnswer-1].setCorrectness(true);
     }
     public Question(String questionText, Answer answerC) {
         this.questionText = questionText;

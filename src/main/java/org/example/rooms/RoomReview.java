@@ -10,7 +10,7 @@ public class RoomReview extends Room {
             "Het sprintplan maken voor de volgende sprint",
             "Een overzicht van het scrumproces geven aan nieuwe teamleden",
             "Het product tonen en feedback van stakeholders verzamelen"
-    });
+    }, 4);
 
     public RoomReview(QuestionBehavior questionType) {
         this.introduction = "Welkom in de Sprint Review Kamer!";
