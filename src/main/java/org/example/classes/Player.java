@@ -14,10 +14,10 @@ public class Player implements UpdateSubscriber {
 //        JSON.optInt("currentRoom", currentRoom);
     }
 
-    public void setCurrentRoom(boolean isCorrect) {
+    public void setCurrentRoom(int room) {
+        currentRoom = room;
 
         //Uitgecomment voor Casper, is een ideetje voor het opslaan van currentGame, ook in class Awnser heb ik wat uitgecomment
-        //ook de boolean isCorrect heb ik toegepast van Awnser setCorrectness en hier in setCurrentRoom
 
 //        if (isCorrect) {
 //            JSON.put("currentRoom", currentRoom);
