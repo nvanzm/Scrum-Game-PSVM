@@ -44,10 +44,7 @@ public class Game {
         }
     }
 
-    public void newGame() {
-        //Moet nog implementeren dat er een nieuw spel wordt aangemaakt dmv JSON
-
-        Scanner scanner = new Scanner(System.in);
+    public ArrayList<Room> Rooms() {
         MultipleChoice multipleChoice = new MultipleChoice();
         FillInTheBlank fillInTheBlank = new FillInTheBlank();
         ArrayList<Room> rooms = new ArrayList<>();
@@ -60,6 +57,14 @@ public class Game {
         rooms.add(new RoomRetrospective(multipleChoice));
         rooms.add(new RoomTia(multipleChoice));
 
+        return rooms;
+    }
+
+    public void newGame() {
+        //Moet nog implementeren dat er een nieuw spel wordt aangemaakt dmv JSON
+        ArrayList<Room> rooms = Rooms();
+
+        Scanner scanner = new Scanner(System.in);
         System.out.println("=========================================");
         System.out.println("Kies een kamer om mee te beginnen! (bijv. kamer 1):");
         String input = scanner.nextLine().toLowerCase();
