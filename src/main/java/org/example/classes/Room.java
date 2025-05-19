@@ -1,7 +1,6 @@
 package org.example.classes;
 
 public abstract class Room {
-    String introduction;
     Monster monster;
 
     public void runRoom() {

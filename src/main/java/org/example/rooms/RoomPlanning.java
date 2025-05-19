@@ -1,6 +1,7 @@
 package org.example.rooms;
 
 import org.example.classes.Monster;
+import org.example.classes.Player;
 import org.example.classes.Question;
 import org.example.classes.Room;
 import org.example.interfaces.QuestionBehavior;

@@ -7,7 +7,6 @@ import org.example.interfaces.QuestionBehavior;
 import java.util.Scanner;
 
 public class MultipleChoice implements QuestionBehavior {
-
     public void askQuestion(Question question) {
         Scanner scanner = new Scanner(System.in);
         System.out.println(question.getQuestionText());
@@ -23,7 +22,8 @@ public class MultipleChoice implements QuestionBehavior {
         if (answers[choice - 1].getCorrectness()) {
             System.out.println("Correct!");
         } else {
-            System.out.println("Helaas, dat is niet juist.");
+            System.out.println("Helaas, dat is niet juist. Probeer het nog een keer!");
+            askQuestion(question);
         }
     }
 }

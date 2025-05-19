@@ -36,5 +36,7 @@ public class Player implements UpdateSubscriber {
         roomsDone++;
     }
 
-    public void jokerUsed(){jokersUsed++;}
+    public void jokerUsed() {
+        jokersUsed++;
+    }
 }
