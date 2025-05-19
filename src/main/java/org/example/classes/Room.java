@@ -1,4 +1,4 @@
-package org.example;
+package org.example.classes;
 
 public abstract class Room {
     String introduction;

@@ -1,6 +1,10 @@
 package org.example.rooms;
 
-import org.example.*;
+import org.example.classes.Answer;
+import org.example.classes.Monster;
+import org.example.classes.Question;
+import org.example.classes.Room;
+import org.example.interfaces.QuestionBehavior;
 
 public class RoomDaily extends Room {
     private String introduction;

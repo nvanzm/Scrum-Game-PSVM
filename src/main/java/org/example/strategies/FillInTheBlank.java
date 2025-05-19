@@ -1,7 +1,7 @@
 package org.example.strategies;
 
-import org.example.Question;
-import org.example.QuestionBehavior;
+import org.example.classes.Question;
+import org.example.interfaces.QuestionBehavior;
 
 import java.util.Scanner;
 
