@@ -19,5 +19,8 @@ public class Answer {
 
     public void setCorrectness(boolean correctness) {
         this.isCorrect = correctness;
+
+//        Player player = new Player();
+//        player.setCurrentRoom(isCorrect);
     }
 }
