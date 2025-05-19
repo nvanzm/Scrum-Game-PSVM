@@ -1,4 +1,7 @@
-package org.example;
+package org.example.classes;
+
+import org.example.interfaces.UpdateSubscriber;
+import org.example.interfaces.UpdaterInterface;
 
 import java.util.ArrayList;
 import java.util.List;

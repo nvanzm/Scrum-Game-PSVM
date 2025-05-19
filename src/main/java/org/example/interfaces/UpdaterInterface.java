@@ -1,4 +1,4 @@
-package org.example;
+package org.example.interfaces;
 
 public interface UpdaterInterface {
     void addSubscriber(UpdateSubscriber subscriber);

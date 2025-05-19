@@ -1,11 +1,14 @@
 package org.example.classes;
 
-import org.json.JSONObject;
+import org.example.interfaces.UpdateSubscriber;
+//import org.json.JSONObject;
 
-public class Player {
+public class Player implements UpdateSubscriber {
 //    JSONObject JSON = new JSONObject();
+
     public int currentRoom;
     public int roomsDone;
+    public int jokersUsed;
 
     public void getCurrentRoom() {
 //        JSON.optInt("currentRoom", currentRoom);
@@ -26,13 +29,12 @@ public class Player {
     public void getStatus() {
         System.out.println("Current Room: " + currentRoom);
         System.out.println("Rooms Done: " + roomsDone);
+        System.out.println("Jokers Used: " + jokersUsed);
     }
 
-    public void setStatus() {
-
-    }
-
-    public void roomDone() {
+    public void roomComplete() {
         roomsDone++;
     }
+
+    public void jokerUsed(){jokersUsed++;}
 }
