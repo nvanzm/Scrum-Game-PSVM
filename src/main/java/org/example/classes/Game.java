@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
+    private final Scanner scanner = new Scanner(System.in);
+
     public void launchGame() {
         System.out.println("=========================================");
         System.out.println("  ____   ____ ____  _   _ __  __ ");
@@ -19,13 +21,12 @@ public class Game {
         System.out.println("Kies een optie:");
         System.out.println("1. Start nieuw spel");
         System.out.println("2. Huidige spel");
-        System.out.println("3. Opties");
-        System.out.println("4. Afsluiten");
+        System.out.println("3. Afsluiten");
         System.out.println("=========================================");
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Voer je keuze in (1-4): ");
+        System.out.print("Voer je keuze in (1-3): ");
         int choice = scanner.nextInt();
+        scanner.nextLine();
 
         switch (choice) {
             case 1:
@@ -64,7 +65,6 @@ public class Game {
         //Moet nog implementeren dat er een nieuw spel wordt aangemaakt dmv JSON
         ArrayList<Room> rooms = Rooms();
 
-        Scanner scanner = new Scanner(System.in);
         System.out.println("=========================================");
         System.out.println("Kies een kamer om mee te beginnen! (bijv. kamer 1):");
         String input = scanner.nextLine().toLowerCase();
