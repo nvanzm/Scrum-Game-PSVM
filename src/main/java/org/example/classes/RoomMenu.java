@@ -3,7 +3,7 @@ package org.example.classes;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class roomMenu extends Menu {
+public class RoomMenu extends Menu {
     Menu homeScherm;
     Menu chooseRoom;
 

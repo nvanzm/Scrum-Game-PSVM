@@ -1,7 +1,7 @@
 package org.example.classes;
 
 public abstract class Menu {
-    public final void Display() {
+    public final void display() {
         begroeting();
         optieMenu();
     }
