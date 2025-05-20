@@ -1,5 +1,6 @@
 package org.example.classes;
 
+import com.sun.tools.javac.Main;
 import org.example.rooms.*;
 import org.example.strategies.*;
 import java.util.ArrayList;
@@ -12,18 +13,18 @@ public class Game {
         this.mainMenu = homeScherm;
         this.chooseRoom = chooseRoom;
 
-        if (homeScherm instanceof org.example.classes.mainMenu mainMenu) {
+        if (homeScherm instanceof MainMenu mainMenu) {
             mainMenu.setGame(this);
         }
     }
 
     public void launchGameAndPauseGame() {
-        mainMenu.Display();
+        mainMenu.display();
     }
 
     public void newGame() {
         //Moet nog implementeren dat er een nieuw spel wordt aangemaakt dmv JSON
-        chooseRoom.Display();
+        chooseRoom.display();
     }
 
     public void currentGame() {

@@ -2,7 +2,7 @@ package org.example.classes;
 
 import java.util.Scanner;
 
-public class mainMenu extends Menu {
+public class MainMenu extends Menu {
     Game game;
 
     public void setGame(Game game) {
