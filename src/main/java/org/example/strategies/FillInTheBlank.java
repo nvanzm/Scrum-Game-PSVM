@@ -12,7 +12,7 @@ public class FillInTheBlank implements QuestionBehavior {
 
         String userInput = scanner.nextLine();
 
-        if (userInput.equalsIgnoreCase(question.getCorrectAnswerSingle())) {
+        if (userInput.equalsIgnoreCase(question.getCorrectAnswerFITB())) {
             System.out.println("Correct!");
         } else {
             System.out.println("Helaas, dat is niet juist. Probeer het nog een keer!");

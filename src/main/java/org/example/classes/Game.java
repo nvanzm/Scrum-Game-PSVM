@@ -1,5 +1,6 @@
 package org.example.classes;
 
+import org.example.interfaces.QuestionBehavior;
 import org.example.rooms.*;
 import org.example.strategies.*;
 import java.util.ArrayList;
@@ -33,15 +34,16 @@ public class Game {
     }
 
     public ArrayList<Room> Rooms() {
-        MultipleChoice multipleChoice = new MultipleChoice();
-        FillInTheBlank fillInTheBlank = new FillInTheBlank();
+        QuestionBehavior multipleChoice = new MultipleChoice();
+        QuestionBehavior fillInTheBlank = new FillInTheBlank();
+        QuestionBehavior puzzle = new Puzzle();
         ArrayList<Room> rooms = new ArrayList<>();
 
         //Kamer kan toegevoegd worden, we gebruiken de open-closed principle
+        rooms.add(new RoomReview(puzzle));
         rooms.add(new RoomPlanning(multipleChoice));
         rooms.add(new RoomDaily(fillInTheBlank));
         rooms.add(new RoomBoard(multipleChoice));
-        rooms.add(new RoomReview(multipleChoice));
         rooms.add(new RoomRetrospective(multipleChoice));
         rooms.add(new RoomTia(multipleChoice));
 

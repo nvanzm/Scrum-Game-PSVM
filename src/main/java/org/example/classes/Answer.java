@@ -9,6 +9,7 @@ public class Answer {
         this.isCorrect = isCorrect;
     }
 
+
     public String getAnswerText() {
         return answerText;
     }
