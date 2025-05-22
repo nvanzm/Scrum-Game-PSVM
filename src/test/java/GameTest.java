@@ -1,5 +1,5 @@
-//import org.example.classes.Game;
-//import org.example.classes.Menu;
+//import org.example.core.engine.Game;
+//import org.example.ui.Menu;
 //import org.example.classes.mainMenu;
 //import org.example.classes.roomMenu;
 //import org.junit.jupiter.api.Test;
