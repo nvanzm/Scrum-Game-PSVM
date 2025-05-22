@@ -1,11 +1,14 @@
 package org.example.classes;
 
+import org.example.GameLauncher;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RoomMenu extends Menu {
     Menu homeScherm;
     Menu chooseRoom;
+    Game game = new Game(homeScherm, chooseRoom);
 
     Player player = new Player();
 //    int currentRoom = player.currentRoom;
@@ -20,7 +23,6 @@ public class RoomMenu extends Menu {
 
     @Override
     public void optieMenu() {
-        Game game = new Game(homeScherm, chooseRoom);
         ArrayList<Room> rooms = game.Rooms();
         Scanner scanner = new Scanner(System.in);
 
