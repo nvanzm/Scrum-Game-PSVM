@@ -26,4 +26,6 @@ public abstract class Room {
     public String getRoomName() {
         return roomName;
     }
+
+    public abstract void handleQuestion();
 }

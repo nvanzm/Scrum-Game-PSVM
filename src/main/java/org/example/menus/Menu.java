@@ -3,12 +3,14 @@ package org.example.menus;
 import java.util.Objects;
 
 public abstract class Menu {
-    private String menuName;
-    private String welcomeMessage;
+    private final String menuName;
+    private final String welcomeMessage;
+    private final String[] options;
 
-    protected Menu(String menuName, String welcomeMessage) {
+    protected Menu(String menuName, String welcomeMessage, String[] options) {
         this.menuName = Objects.requireNonNullElse(menuName, "Standard Menu");
         this.welcomeMessage = Objects.requireNonNullElse(welcomeMessage, "Welcome to the Standard Menu!");
+        this.options = options;
     }
 
     public String getRoomName() {
@@ -17,6 +19,10 @@ public abstract class Menu {
 
     public String getWelcomeMessage() {
         return welcomeMessage; // Default message, can be overridden
+    }
+
+    public String[] getOptions() {
+        return options;
     }
 
 }

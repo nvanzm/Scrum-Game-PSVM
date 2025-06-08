@@ -1,12 +1,15 @@
 package org.example.core.engine;
 
 import org.example.core.intents.Intent;
+import org.example.core.renderer.IOHandler;
+import org.example.core.renderer.input.ConsoleIOHandler;
 import org.example.core.renderer.input.InputService;
+import org.example.core.renderer.input.RoomInputHandler;
 import org.example.core.renderer.output.*;
 import org.example.menus.Menu;
 import org.example.menus.handlers.MainMenuHandler;
 import org.example.questions.strategies.FillInTheBlank;
-import org.example.questions.strategies.MultipleChoice;
+import org.example.questions.strategies.MultipleChoiceBehavior;
 import org.example.questions.strategies.Puzzle;
 import org.example.rooms.Room;
 import org.example.questions.QuestionBehavior;
@@ -17,6 +20,7 @@ import java.util.ArrayList;
 public class GameEngine {
     private final Menu mainMenu;
     private final Menu chooseRoom;
+    private final IOHandler ioHandler;  // Add this
     private final RenderableWrapper universalRenderer;
     private final InputService inputService = new InputService();
     private GameState gameState = new GameState();
@@ -24,6 +28,7 @@ public class GameEngine {
     public GameEngine(Menu homeScherm, Menu chooseRoom) {
         this.mainMenu = homeScherm;
         this.chooseRoom = chooseRoom;
+        this.ioHandler = new ConsoleIOHandler();
 
         MenuRenderer menuRenderer = new MenuRenderer();
         MainMenuHandler mainMenuHandler = new MainMenuHandler();
@@ -31,9 +36,28 @@ public class GameEngine {
     }
 
     public void launchGame() {
-        gameState.setupRooms();
+        setupGame();
         gameLoop();
     }
+
+    private void setupGame() {
+        // Create behaviors
+        QuestionBehavior multipleChoiceBehavior = new MultipleChoiceBehavior(ioHandler);
+
+        // Create rooms with behaviors
+        Room tiaRoom = new RoomTia(
+                multipleChoiceBehavior,
+                "Tia's Room",
+                "Welcome to Tia's room! Answer Scrum questions to proceed."
+        );
+
+        // Add rooms to game state
+        gameState.addRoom(tiaRoom);
+        // Add more rooms as needed...
+
+        gameState.initialize();  // Any additional setup needed
+    }
+
 
     public void gameLoop() {
         boolean running = true;
@@ -80,6 +104,10 @@ public class GameEngine {
     }
 
     public void switchToRoom(Room newRoom) {
-        universalRenderer.setItem(newRoom, new RoomRenderer(), null); // No input handler for rooms yet
+        RoomInputHandler roomInputHandler = new RoomInputHandler(ioHandler, newRoom);
+        RoomRenderer roomRenderer = new RoomRenderer(ioHandler);  // Pass IOHandler to renderer
+        universalRenderer.setItem(newRoom, roomRenderer, roomInputHandler);
     }
+
+
 }

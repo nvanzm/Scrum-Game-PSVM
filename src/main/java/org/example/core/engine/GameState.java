@@ -1,11 +1,14 @@
 package org.example.core.engine;
 
 
+import org.example.core.renderer.IOHandler;
+import org.example.core.renderer.input.ConsoleIOHandler;
 import org.example.menus.MainMenu;
 import org.example.menus.Menu;
 import org.example.questions.QuestionBehavior;
 import org.example.questions.strategies.FillInTheBlank;
-import org.example.questions.strategies.MultipleChoice;
+import org.example.questions.strategies.MultipleChoiceBehavior;
+import org.example.questions.strategies.MultipleChoiceBehavior;
 import org.example.questions.strategies.Puzzle;
 import org.example.rooms.Room;
 import org.example.rooms.templates.*;
@@ -22,17 +25,18 @@ public class GameState {
     }
 
     public void setupRooms() {
-        QuestionBehavior multipleChoice = new MultipleChoice();
-        QuestionBehavior fillInTheBlank = new FillInTheBlank();
-        QuestionBehavior puzzle = new Puzzle();
+        IOHandler ioHandler = new ConsoleIOHandler();
 
-        //Kamer kan toegevoegd worden, we gebruiken de open-closed principle
-        rooms.add(new RoomTia(multipleChoice, "TIA Kamer", "Hallo daar!"));
-        rooms.add(new RoomReview(puzzle, "Review Kamer", "Hallo daar!"));
-        rooms.add(new RoomPlanning(multipleChoice, "Planning Kamer", "Hallo daar!"));
-        rooms.add(new RoomDaily(fillInTheBlank, "Daily Kamer", "Hallo daar!"));
-        rooms.add(new RoomBoard(multipleChoice, "Board Kamer", "Hallo daar!"));
-        rooms.add(new RoomRetrospective(multipleChoice, "Retrospective Kamer", "Hallo daar!"));
+        QuestionBehavior multipleChoiceBehavior = new MultipleChoiceBehavior(ioHandler);
+
+        Room roomTia = new RoomTia(
+                multipleChoiceBehavior,
+                "Tia's Room",
+                "Welcome to Tia's room! Here you'll answer questions about Scrum."
+        );
+
+        // Add room to your rooms collection
+        rooms.add(roomTia);
     }
 
     public void advanceRoom() {
@@ -48,7 +52,15 @@ public class GameState {
     }
 
     public Menu getMainMenu() {
-        return new MainMenu("Main Menu", "Welcome to the main menu!");
+        return new MainMenu("Main Menu", "Welkom in de startkamer!", new String[]{"Start game", "Exit game"});
     }
 
+
+    public void addRoom(Room room) {
+        rooms.add(room);
+    }
+
+    public void initialize(){
+
+    }
 }

@@ -6,9 +6,11 @@ import org.example.menus.MainMenu;
 
 public class GameLauncher {
     public static void main(String[] args) {
-        MainMenu mainMenu = new MainMenu("Main Menu", "JAJA!");
+        MainMenu mainMenu = new MainMenu("Main Menu", "Welkom in de startkamer!", new String[]{"Start game", "Exit game"});
         RoomMenu roomMenu = new RoomMenu("Room Menu", "HALLO!");
-        GameEngine game = new GameEngine(mainMenu, roomMenu);
-        game.launchGame();
+
+        GameEngine engine = new GameEngine(mainMenu, roomMenu);
+        engine.launchGame();
+
     }
 }

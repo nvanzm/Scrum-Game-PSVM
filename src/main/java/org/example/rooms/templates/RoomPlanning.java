@@ -5,7 +5,7 @@ import org.example.rooms.Room;
 import org.example.questions.QuestionBehavior;
 
 public class RoomPlanning extends Room{
-    private QuestionBehavior questionType;
+    private QuestionBehavior questionBehavior;
     private Question question = new Question("Welk onderdeel hoort niet bij een sprintplanning?", new String[]{
             "Het team bepaalt hoeveel werk ze aankunnen",
             "Het team selecteert user stories uit de product backlog",
@@ -13,10 +13,14 @@ public class RoomPlanning extends Room{
             "De Product Owner schrijft een uitgebreid eindrapport",
     }, 4);
 
-    public RoomPlanning(QuestionBehavior questionType, String roomName, String welcomeMessage) {
+    public RoomPlanning(QuestionBehavior questionBehavior, String roomName, String welcomeMessage) {
         super(roomName, welcomeMessage);
-        this.questionType = questionType;
+        this.questionBehavior = questionBehavior;
     }
 
+    @Override
+    public void handleQuestion() {
+        questionBehavior.askQuestion(question);
+    }
 
 }
