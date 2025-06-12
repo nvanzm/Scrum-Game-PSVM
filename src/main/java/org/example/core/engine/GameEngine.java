@@ -8,14 +8,10 @@ import org.example.core.renderer.input.RoomInputHandler;
 import org.example.core.renderer.output.*;
 import org.example.menus.Menu;
 import org.example.menus.handlers.MainMenuHandler;
-import org.example.questions.strategies.FillInTheBlank;
 import org.example.questions.strategies.MultipleChoiceBehavior;
-import org.example.questions.strategies.Puzzle;
 import org.example.rooms.Room;
 import org.example.questions.QuestionBehavior;
 import org.example.rooms.templates.*;
-
-import java.util.ArrayList;
 
 public class GameEngine {
     private final Menu mainMenu;

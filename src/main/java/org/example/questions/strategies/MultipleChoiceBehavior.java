@@ -8,9 +8,7 @@ import org.example.questions.displays.AnswerValidator;
 import org.example.questions.displays.MultipleChoiceDisplayStrategy;
 import org.example.questions.displays.QuestionDisplayStrategy;
 
-import java.util.Scanner;
-
-public class MultipleChoiceBehavior implements QuestionBehavior, AnswerValidator {
+public class MultipleChoiceBehavior implements QuestionBehavior, AnswerValidator<Answer[], Integer> {
     private final QuestionDisplayStrategy displayStrategy;
     private final IOHandler ioHandler;
 
@@ -32,11 +30,11 @@ public class MultipleChoiceBehavior implements QuestionBehavior, AnswerValidator
         } else {
             ioHandler.display("Helaas, dat is niet juist. Probeer het nog een keer!");
             askQuestion(question);
+            //joker of item gebruiken
         }
     }
 
-    @Override
-    public boolean validateAnswer(Answer[] answers, int choice) {
+    public boolean validateAnswer(Answer[] answers, Integer choice) {
         return answers[choice - 1].getCorrectness();
     }
 
