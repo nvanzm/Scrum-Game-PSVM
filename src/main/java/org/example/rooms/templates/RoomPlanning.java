@@ -19,8 +19,8 @@ public class RoomPlanning extends Room{
     }
 
     @Override
-    public void handleQuestion() {
-        questionBehavior.askQuestion(question);
+    public String handleQuestion() {
+        return questionBehavior.askQuestion(question);
     }
 
 }

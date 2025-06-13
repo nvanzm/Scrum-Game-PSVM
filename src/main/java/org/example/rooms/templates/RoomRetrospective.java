@@ -7,22 +7,22 @@ import org.example.questions.QuestionBehavior;
 
 public class RoomRetrospective extends Room {
     private String introduction;
-    private QuestionBehavior questionType;
+    private QuestionBehavior questionBehavior;
     private Question question = new Question("Vraag", new String[]{
             "Antwoord 1", "Antwoord 2", "Antwoord 3", "Antwoord 4"},4);
 
-    public RoomRetrospective(QuestionBehavior questionType, String roomName, String welcomeMessage) {
+    public RoomRetrospective(QuestionBehavior questionBehavior, String roomName, String welcomeMessage) {
         super(roomName, welcomeMessage);
-        this.questionType = questionType;
+        this.questionBehavior = questionBehavior;
     }
 
     public void introduction() {
         System.out.println(introduction);
     }
 
-    public void handleQuestion() {
-        questionType.askQuestion(question);
+    @Override
+    public String handleQuestion() {
+        return questionBehavior.askQuestion(question);
     }
-
 
 }

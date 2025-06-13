@@ -6,18 +6,18 @@ import org.example.core.intents.NavigationIntent;
 
 public class MainMenuHandler implements InputHandler {
     @Override
-    public Intent handleInput(String input) {
+    public String handleInput(String input) {
         if (input == null) {
             System.out.println("Ben je kkr dom? - sahid sinar");
         }
 
         switch (input) {
             case "1":
-                return new NavigationIntent("SWITCH_TO_ROOM");
+                return "SWITCH_TO_ROOM";
             case "2":
-                return new NavigationIntent("EXIT");
+                return "EXIT";
             default:
-               return new InvalidInputIntent("Your input is invalid.");
+               return "Your input is invalid";
         }
     }
 }

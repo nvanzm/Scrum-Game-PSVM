@@ -27,5 +27,5 @@ public abstract class Room {
         return roomName;
     }
 
-    public abstract void handleQuestion();
+    public abstract String handleQuestion();
 }

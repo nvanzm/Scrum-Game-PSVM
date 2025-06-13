@@ -21,17 +21,18 @@ public class MultipleChoiceBehavior implements QuestionBehavior, AnswerValidator
 
 
     @Override
-    public void askQuestion(Question question) {
-        displayStrategy.displayQuestion(question, ioHandler);
+    public String askQuestion(Question question) {
+        while (true) {
+            displayStrategy.displayQuestion(question, ioHandler);
+            int choice = ioHandler.getNumericInput();
+            Answer[] answers = question.getAnswers();
 
-        int choice = ioHandler.getNumericInput();
-        Answer[] answers = question.getAnswers();
-
-        if (validateAnswer(answers, choice)) {
-            ioHandler.display("Correct!");
-        } else {
-            ioHandler.display("Helaas, dat is niet juist. Probeer het nog een keer!");
-            askQuestion(question);
+            if (validateAnswer(answers, choice)) {
+                ioHandler.display("Correct!");
+                return "ADVANCE_ROOM";
+            } else {
+                ioHandler.display("Helaas, dat is niet juist. Probeer het nog een keer!");
+            }
         }
     }
 

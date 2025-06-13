@@ -29,17 +29,17 @@ public class GameState {
 
         QuestionBehavior multipleChoiceBehavior = new MultipleChoiceBehavior(ioHandler);
 
-        Room roomTia = new RoomTia(
-                multipleChoiceBehavior,
-                "Tia's Room",
-                "Welcome to Tia's room! Here you'll answer questions about Scrum."
-        );
+        Room roomTia = new RoomTia(multipleChoiceBehavior, "Tia's Room", "Welcome to Tia's room! Here you'll answer questions about Scrum.");
+
+        Room roomBoard = new RoomBoard(multipleChoiceBehavior, "Board Room", "This is the board room.");
 
         // Add room to your rooms collection
         rooms.add(roomTia);
+        rooms.add(roomBoard);
     }
 
     public void advanceRoom() {
+        System.out.println(rooms);
         if (currentRoom == rooms.size() - 1) {
             return;
         }
@@ -60,7 +60,7 @@ public class GameState {
         rooms.add(room);
     }
 
-    public void initialize(){
+    public void initialize() {
 
     }
 }
