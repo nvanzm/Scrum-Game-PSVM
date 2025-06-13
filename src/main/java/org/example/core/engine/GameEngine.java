@@ -18,7 +18,7 @@ public class GameEngine {
     private final IOHandler ioHandler;  // Add this
     private final RenderableWrapper universalRenderer;
     private final InputService inputService = new InputService();
-    private GameState gameState = new GameState();
+    private final GameState gameState = new GameState();
 
     public GameEngine(Menu homeScherm, Menu chooseRoom) {
         this.mainMenu = homeScherm;
@@ -76,6 +76,12 @@ public class GameEngine {
                 switchToRoom(currentRoom);
                 yield false;
             }
+            case "CONTINUE_GAME" -> {
+                this.gameState.loadProgress();
+                Room currentRoom = gameState.getCurrentRoom();
+                switchToRoom(currentRoom);
+                yield false;
+            }
             case "SWITCH_TO_MENU" -> {
                 Menu mainMenu = gameState.getMainMenu();
                 switchToMenu(mainMenu);
@@ -84,6 +90,7 @@ public class GameEngine {
             case "EXIT" -> true;
             default -> {
                 System.out.println("Invalid input.");
+                this.gameState.saveProgress();
                 yield false;
             }
         };

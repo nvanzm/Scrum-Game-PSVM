@@ -1,7 +1,10 @@
 package org.example.core.engine;
 
 
+import org.example.core.player.Player;
 import org.example.core.renderer.IOHandler;
+import org.example.core.renderer.JsonHandler;
+import org.example.core.renderer.SaveHandler;
 import org.example.core.renderer.input.ConsoleIOHandler;
 import org.example.menus.MainMenu;
 import org.example.menus.Menu;
@@ -18,10 +21,13 @@ import java.util.List;
 
 public class GameState {
     List<Room> rooms;
-    Integer currentRoom = 0;
+    Player player;
+    SaveHandler saveHandler;
 
     public GameState() {
         rooms = new ArrayList<>();
+        this.player = new Player();
+        this.saveHandler = new JsonHandler();
     }
 
     public void setupRooms() {
@@ -40,21 +46,28 @@ public class GameState {
 
     public void advanceRoom() {
         System.out.println(rooms);
-        if (currentRoom == rooms.size() - 1) {
+        if (player.getCurrentRoom() == rooms.size() - 1) {
             return;
         }
 
-        currentRoom++;
+        this.player.increaseCurrentRoom();
     }
 
     public Room getCurrentRoom() {
-        return rooms.get(currentRoom);
+        return rooms.get(player.getCurrentRoom());
     }
 
     public Menu getMainMenu() {
         return new MainMenu("Main Menu", "Welkom in de startkamer!", new String[]{"Start game", "Exit game"});
     }
 
+    public void saveProgress() {
+        this.saveHandler.saveObj("player", player);
+    }
+
+    public void loadProgress() {
+        this.player = this.saveHandler.loadObj("player", Player.class);
+    }
 
     public void addRoom(Room room) {
         rooms.add(room);

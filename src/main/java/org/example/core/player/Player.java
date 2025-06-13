@@ -4,26 +4,21 @@ import org.example.updater.UpdateSubscriber;
 //import org.json.JSONObject;
 
 public class Player implements UpdateSubscriber {
-//    JSONObject JSON = new JSONObject();
 
     public int currentRoom;
     public int roomsDone;
     public int jokersUsed;
 
-    public void getCurrentRoom() {
-//        JSON.optInt("currentRoom", currentRoom);
+    public int getCurrentRoom() {
+        return currentRoom;
     }
 
-    public void setCurrentRoom(int room) {
-        currentRoom = room;
+    public void increaseCurrentRoom() {
+        currentRoom++;
+    }
 
-        //Uitgecomment voor Casper, is een ideetje voor het opslaan van currentGame, ook in class Awnser heb ik wat uitgecomment
-
-//        if (isCorrect) {
-//            JSON.put("currentRoom", currentRoom);
-//        }
-//
-//        JSON.optInt("currentRoom");
+    public void setCurrentRoom(int roomIndex) {
+        currentRoom = roomIndex;
     }
 
     public void getStatus() {
