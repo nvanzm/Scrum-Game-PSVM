@@ -7,10 +7,11 @@ import java.io.InputStream;
 public class GameTest {
 
     @Test
-    public void gameStartTest() {
+    public void gameStartAndEndTest() {
+        //2 om de game af te sluiten.
         String simulatedInput = "2\n";
-        InputStream inputStreamStub = new ByteArrayInputStream(simulatedInput.getBytes());
-        System.setIn(inputStreamStub);
+        InputStream inputStreamMock = new ByteArrayInputStream(simulatedInput.getBytes());
+        System.setIn(inputStreamMock);
 
         try {
             GameLauncher.main(new String[] {});

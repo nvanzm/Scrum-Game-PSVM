@@ -7,10 +7,11 @@ import java.io.InputStream;
 public class RoomTest {
 
     @Test
-    public void roomStartTest() {
+    public void roomStartAndEndTest() {
+        //1 invoeren om naar de kamer te gaan, back om terug te gaan naar mainmenu en 2 om de game af te sluiten.
         String simulatedInput = "1\nback\n2";
-        InputStream inputStreamStub = new ByteArrayInputStream(simulatedInput.getBytes());
-        System.setIn(inputStreamStub);
+        InputStream inputStreamMock = new ByteArrayInputStream(simulatedInput.getBytes());
+        System.setIn(inputStreamMock);
 
         try {
             GameLauncher.main(new String[] {});
