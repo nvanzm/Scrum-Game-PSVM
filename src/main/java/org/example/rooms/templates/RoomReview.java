@@ -11,20 +11,21 @@ import java.util.*;
 
 public class RoomReview extends Room {
     private String introduction;
-    private QuestionBehavior questionType;
+    private QuestionBehavior questionBehavior;
     private Question question;
 
-    public RoomReview(QuestionBehavior questionType, String roomName, String welcomeMessage) {
+    public RoomReview(QuestionBehavior questionBehavior, String roomName, String welcomeMessage) {
         super(roomName, welcomeMessage);
-        this.questionType = questionType;
+        this.questionBehavior = questionBehavior;
     }
 
     public void introduction() {
         System.out.println(introduction);
     }
 
-    public void handleQuestion() {
-        questionType.askQuestion(question);
+    @Override
+    public String handleQuestion() {
+        return questionBehavior.askQuestion(question);
     }
 
 

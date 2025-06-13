@@ -15,12 +15,11 @@ public class RoomInputHandler implements InputHandler {
     }
 
     @Override
-    public NavigationIntent handleInput(String input) {
+    public String handleInput(String input) {
         if (input.equalsIgnoreCase("back")) {
-            return new NavigationIntent("SWITCH_TO_MENU");
+            return "SWITCH_TO_MENU";
         }
 
-        room.handleQuestion();
-        return null;
+        return room.handleQuestion();
     }
 }

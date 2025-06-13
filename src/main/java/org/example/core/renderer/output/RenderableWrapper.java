@@ -25,7 +25,11 @@ public class RenderableWrapper implements Renderable {
         this.inputHandler = inputHandler;
     }
 
-    public Intent handleInput(String input) {
+    public void setItem(Object item) {
+        this.item = item;
+    }
+
+    public String handleInput(String input) {
         if (inputHandler != null) {
             return inputHandler.handleInput(input);
         } else {

@@ -1,6 +1,5 @@
 package org.example.core.engine;
 
-import org.example.core.intents.Intent;
 import org.example.core.renderer.IOHandler;
 import org.example.core.renderer.input.ConsoleIOHandler;
 import org.example.core.renderer.input.InputService;
@@ -8,14 +7,10 @@ import org.example.core.renderer.input.RoomInputHandler;
 import org.example.core.renderer.output.*;
 import org.example.menus.Menu;
 import org.example.menus.handlers.MainMenuHandler;
-import org.example.questions.strategies.FillInTheBlank;
 import org.example.questions.strategies.MultipleChoiceBehavior;
-import org.example.questions.strategies.Puzzle;
 import org.example.rooms.Room;
 import org.example.questions.QuestionBehavior;
 import org.example.rooms.templates.*;
-
-import java.util.ArrayList;
 
 public class GameEngine {
     private final Menu mainMenu;
@@ -41,20 +36,8 @@ public class GameEngine {
     }
 
     private void setupGame() {
-        // Create behaviors
-        QuestionBehavior multipleChoiceBehavior = new MultipleChoiceBehavior(ioHandler);
 
-        // Create rooms with behaviors
-        Room tiaRoom = new RoomTia(
-                multipleChoiceBehavior,
-                "Tia's Room",
-                "Welcome to Tia's room! Answer Scrum questions to proceed."
-        );
-
-        // Add rooms to game state
-        gameState.addRoom(tiaRoom);
-        // Add more rooms as needed...
-
+        gameState.setupRooms();
         gameState.initialize();  // Any additional setup needed
     }
 
@@ -67,7 +50,7 @@ public class GameEngine {
             universalRenderer.render();
             // Read input from the user
             String input = inputService.readLine();
-            Intent intent = universalRenderer.handleInput(input);
+            String intent = universalRenderer.handleInput(input);
 
             if (handleIntent(intent)) {
                 running = false;
@@ -75,12 +58,19 @@ public class GameEngine {
         }
     }
 
-    public boolean handleIntent(Intent intent) {
+    public boolean handleIntent(String intent) {
         if (intent == null) {
             return false;
         }
 
-        return switch (intent.getAction()) {
+        return switch (intent) {
+            case "ADVANCE_ROOM" -> {
+                gameState.advanceRoom();
+                System.out.println("You have advanced to room " + gameState.getCurrentRoom().getRoomName());
+                Room currentRoom = gameState.getCurrentRoom();
+                switchToRoom(currentRoom);
+                yield false;
+            }
             case "SWITCH_TO_ROOM" -> {
                 Room currentRoom = gameState.getCurrentRoom();
                 switchToRoom(currentRoom);

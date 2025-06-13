@@ -8,7 +8,7 @@ import java.util.*;
 
 public class Puzzle implements QuestionBehavior {
 
-    public void askQuestion(Question question) {
+    public String askQuestion(Question question) {
         Scanner scanner = new Scanner(System.in);
         System.out.println(question.getQuestionText());
 
@@ -30,6 +30,7 @@ public class Puzzle implements QuestionBehavior {
             System.out.println("Niet juist, probeer opnieuw.");
             askQuestion(question);
         }
+        return "PLACEHOLDER";
     }
 
 
