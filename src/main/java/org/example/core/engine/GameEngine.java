@@ -108,6 +108,4 @@ public class GameEngine {
         RoomRenderer roomRenderer = new RoomRenderer(ioHandler);  // Pass IOHandler to renderer
         universalRenderer.setItem(newRoom, roomRenderer, roomInputHandler);
     }
-
-
 }

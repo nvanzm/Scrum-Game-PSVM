@@ -27,6 +27,4 @@ public class RoomBoard extends Room {
     public void handleQuestion() {
         questionType.askQuestion(question);
     }
-
-
 }

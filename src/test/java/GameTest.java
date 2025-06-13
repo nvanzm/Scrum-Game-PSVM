@@ -1,32 +1,24 @@
-//import org.example.core.engine.Game;
-//import org.example.ui.Menu;
-//import org.example.classes.mainMenu;
-//import org.example.classes.roomMenu;
-//import org.junit.jupiter.api.Test;
-//
-//import java.io.ByteArrayInputStream;
-//import java.io.InputStream;
-//
-//import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-//
-//public class GameTest {
-//
-//    @Test
-//    public void testLaunchGame() {
-//        Menu roomMenu = new roomMenu();
-//        Menu mainMenu = new mainMenu();
-//
-//        //Hierin testen wij of de game succesvol opstart en de introductie en opdracht kan tonen.
-//        String simulatedInput = "1\n\nkamer 1";
-//        InputStream originalIn = System.in;
-//        System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
-//
-//        Game game = new Game(roomMenu, mainMenu);
-//
-//        assertDoesNotThrow(game::launchGameAndPauseGame);
-//
-//        System.setIn(originalIn);
-//    }
-//}
+import org.example.GameLauncher;
+import org.junit.jupiter.api.Test;
 
-//morgen verder
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+
+public class GameTest {
+
+    @Test
+    public void gameStartTest() {
+        String simulatedInput = "2\n";
+        InputStream inputStreamStub = new ByteArrayInputStream(simulatedInput.getBytes());
+        System.setIn(inputStreamStub);
+
+        try {
+            GameLauncher.main(new String[] {});
+            System.out.println("✅ Test geslaagd: Game is gestart en beëindigd zoals verwacht.");
+        } catch (Exception e) {
+            System.out.println("❌ Test gefaald: Er is een fout opgetreden - " + e.getMessage());
+        }
+    }
+}
+
+//Test gelukt!

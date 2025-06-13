@@ -11,6 +11,5 @@ public class GameLauncher {
 
         GameEngine engine = new GameEngine(mainMenu, roomMenu);
         engine.launchGame();
-
     }
 }
