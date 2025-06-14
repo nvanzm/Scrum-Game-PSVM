@@ -1,13 +1,18 @@
 package org.example.core.player;
 
+import org.example.core.renderer.IOHandler;
+import org.example.core.renderer.input.ConsoleIOHandler;
 import org.example.updater.UpdateSubscriber;
-//import org.json.JSONObject;
 
 public class Player implements UpdateSubscriber {
+    private int currentRoom;
+    private int roomsDone;
+    private int jokersUsed;
+    private final IOHandler ioHandler;
 
-    public int currentRoom;
-    public int roomsDone;
-    public int jokersUsed;
+    Player(){
+        this.ioHandler = new ConsoleIOHandler();
+    }
 
     public int getCurrentRoom() {
         return currentRoom;
@@ -22,9 +27,9 @@ public class Player implements UpdateSubscriber {
     }
 
     public void getStatus() {
-        System.out.println("Current Room: " + currentRoom);
-        System.out.println("Rooms Done: " + roomsDone);
-        System.out.println("Jokers Used: " + jokersUsed);
+        ioHandler.display("Current Room: " + currentRoom);
+        ioHandler.display("Rooms Done: " + roomsDone);
+        ioHandler.display("Jokers Used: " + jokersUsed);
     }
 
     public void roomComplete() {

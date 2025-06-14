@@ -7,24 +7,22 @@ import org.example.core.renderer.input.RoomInputHandler;
 import org.example.core.renderer.output.*;
 import org.example.menus.Menu;
 import org.example.menus.handlers.MainMenuHandler;
-import org.example.questions.strategies.MultipleChoiceBehavior;
 import org.example.rooms.Room;
-import org.example.questions.QuestionBehavior;
-import org.example.rooms.templates.*;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
 
 public class GameEngine {
     private final Menu mainMenu;
-    private final Menu chooseRoom;
     private final IOHandler ioHandler;  // Add this
     private final RenderableWrapper universalRenderer;
     private final InputService inputService = new InputService();
     private final GameState gameState = new GameState();
+    private static final Logger LOGGER = LogManager.getLogger();
 
-    public GameEngine(Menu homeScherm, Menu chooseRoom) {
-        this.mainMenu = homeScherm;
-        this.chooseRoom = chooseRoom;
+    public GameEngine(Menu homeScherm, Menu mainMenu) {
+        this.mainMenu = mainMenu;
         this.ioHandler = new ConsoleIOHandler();
-
         MenuRenderer menuRenderer = new MenuRenderer();
         MainMenuHandler mainMenuHandler = new MainMenuHandler();
         this.universalRenderer = new RenderableWrapper(mainMenu, menuRenderer, mainMenuHandler);
@@ -66,7 +64,7 @@ public class GameEngine {
         return switch (intent) {
             case "ADVANCE_ROOM" -> {
                 gameState.advanceRoom();
-                System.out.println("You have advanced to room " + gameState.getCurrentRoom().getRoomName());
+                LOGGER.debug("Advancing to room: %s", gameState.getCurrentRoom());
                 Room currentRoom = gameState.getCurrentRoom();
                 switchToRoom(currentRoom);
                 yield false;
@@ -83,13 +81,12 @@ public class GameEngine {
                 yield false;
             }
             case "SWITCH_TO_MENU" -> {
-                Menu mainMenu = gameState.getMainMenu();
                 switchToMenu(mainMenu);
                 yield false;
             }
             case "EXIT" -> true;
             default -> {
-                System.out.println("Invalid input.");
+                LOGGER.debug("Invalid input");
                 this.gameState.saveProgress();
                 yield false;
             }

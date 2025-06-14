@@ -1,6 +1,8 @@
 package org.example.core.engine;
 
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.example.core.player.Player;
 import org.example.core.renderer.IOHandler;
 import org.example.core.renderer.JsonHandler;
@@ -9,10 +11,7 @@ import org.example.core.renderer.input.ConsoleIOHandler;
 import org.example.menus.MainMenu;
 import org.example.menus.Menu;
 import org.example.questions.QuestionBehavior;
-import org.example.questions.strategies.FillInTheBlank;
 import org.example.questions.strategies.MultipleChoiceBehavior;
-import org.example.questions.strategies.MultipleChoiceBehavior;
-import org.example.questions.strategies.Puzzle;
 import org.example.rooms.Room;
 import org.example.rooms.templates.*;
 
@@ -23,6 +22,8 @@ public class GameState {
     List<Room> rooms;
     Player player;
     SaveHandler saveHandler;
+    private static final Logger LOGGER = LogManager.getLogger();
+
 
     public GameState() {
         rooms = new ArrayList<>();
@@ -45,7 +46,8 @@ public class GameState {
     }
 
     public void advanceRoom() {
-        System.out.println(rooms);
+        LOGGER.debug("Advancing room");
+
         if (player.getCurrentRoom() == rooms.size() - 1) {
             return;
         }
@@ -73,7 +75,9 @@ public class GameState {
         rooms.add(room);
     }
 
-    public void initialize() {
 
+
+    public void initialize() {
+        // Is nog leeg, ik wil hier de startup logica voor gamestate samenvoegen/aanroepen - Casper
     }
 }

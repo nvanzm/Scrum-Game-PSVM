@@ -1,3 +1,5 @@
+package Game;
+
 import org.example.GameLauncher;
 import org.junit.jupiter.api.Test;
 

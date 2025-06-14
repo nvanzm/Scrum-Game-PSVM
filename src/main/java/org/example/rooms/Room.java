@@ -5,12 +5,12 @@ import org.example.impediments.monster.Monster;
 import java.util.Objects;
 
 public abstract class Room {
-    public Monster monster;
+    private Monster monster;
 
     private String roomName;
     private String welcomeMessage;
 
-    public Room(String roomName, String welcomeMessage) {
+    protected Room(String roomName, String welcomeMessage) {
         this.roomName = Objects.requireNonNullElse(roomName, "Standard Room");
         this.welcomeMessage = Objects.requireNonNullElse(welcomeMessage, "Welcome to the Standard Room!");
     }

@@ -8,10 +8,10 @@ import java.io.*;
 
 public class JsonHandler implements SaveHandler {
     private final Gson gson = new Gson();
-    private final String storageDir = "data/"; // Directory to store JSON files
+    private static final String STORAGE_DIR = "data/"; // Directory to store JSON files
 
     public JsonHandler() {
-        File dir = new File(storageDir);
+        File dir = new File(STORAGE_DIR);
         if (!dir.exists()) {
             dir.mkdirs();  // Create directory if needed
         }
@@ -20,7 +20,7 @@ public class JsonHandler implements SaveHandler {
     @Override
     public void saveObj(String id, Object obj) {
         String jsonStr = gson.toJson(obj);
-        String filePath = storageDir + id + ".json";
+        String filePath = STORAGE_DIR + id + ".json";
 
         try (FileWriter writer = new FileWriter(filePath)) {
             writer.write(jsonStr);
@@ -30,7 +30,7 @@ public class JsonHandler implements SaveHandler {
     }
     @Override
     public <T> T loadObj(String id, Class<T> clazz) {
-        String filePath = storageDir + id + ".json";
+        String filePath = STORAGE_DIR + id + ".json";
 
         try (FileReader reader = new FileReader(filePath)) {
             return gson.fromJson(reader, clazz);

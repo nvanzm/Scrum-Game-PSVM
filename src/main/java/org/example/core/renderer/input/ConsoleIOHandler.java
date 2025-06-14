@@ -21,6 +21,13 @@ public class ConsoleIOHandler implements IOHandler {
     }
 
     @Override
+    public void displayOptionsNumbered(List<String> options) {
+        for (int i = 0 ; i < options.size() ; i++) {
+            System.out.printf("%d. %s%n", i + 1, options.get(i));
+        }
+    }
+
+    @Override
     public int getNumericInput() {
         while (true) {
             try {
@@ -31,7 +38,7 @@ public class ConsoleIOHandler implements IOHandler {
                 } else {
                     System.out.println("Please enter a positive number.");
                 }
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException _) {
                 System.out.println("Invalid input. Please enter a number.");
             }
         }
