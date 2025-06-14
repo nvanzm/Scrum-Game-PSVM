@@ -28,18 +28,26 @@ public class GameState {
         IOHandler ioHandler = new ConsoleIOHandler();
 
         QuestionBehavior multipleChoiceBehavior = new MultipleChoiceBehavior(ioHandler);
+        QuestionBehavior fillInTheBlank = new FillInTheBlank();
 
+        Room roomPlanning = new RoomPlanning(multipleChoiceBehavior,"Planning Room", "Welcome to the Planning Room! Let's prepare for the next sprint.");
+        Room roomDaily = new RoomDaily(fillInTheBlank,"Daily Standup Room", "Welcome to the Daily Room! Time for your daily check-in.");
+        Room roomBoard = new RoomBoard(multipleChoiceBehavior, "Board Room", "This is the board room.");
+        Room roomReview = new RoomReview(fillInTheBlank,"Review Room", "Welcome to the Review Room! Let's review what we've accomplished.");
+        Room roomRetro = new RoomRetrospective(multipleChoiceBehavior,"Retrospective Room", "Welcome to the Retrospective Room! Let's reflect and improve.");
         Room roomTia = new RoomTia(multipleChoiceBehavior, "Tia's Room", "Welcome to Tia's room! Here you'll answer questions about Scrum.");
 
-        Room roomBoard = new RoomBoard(multipleChoiceBehavior, "Board Room", "This is the board room.");
-
         // Add room to your rooms collection
-        rooms.add(roomTia);
+        rooms.add(roomPlanning);
+        rooms.add(roomDaily);
         rooms.add(roomBoard);
+        rooms.add(roomReview);
+        rooms.add(roomRetro);
+        rooms.add(roomTia);
     }
 
     public void advanceRoom() {
-        System.out.println(rooms);
+//        System.out.println(rooms);
         if (currentRoom == rooms.size() - 1) {
             return;
         }
@@ -54,7 +62,6 @@ public class GameState {
     public Menu getMainMenu() {
         return new MainMenu("Main Menu", "Welkom in de startkamer!", new String[]{"Start game", "Exit game"});
     }
-
 
     public void addRoom(Room room) {
         rooms.add(room);

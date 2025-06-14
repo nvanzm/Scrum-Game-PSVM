@@ -36,7 +36,6 @@ public class GameEngine {
     }
 
     private void setupGame() {
-
         gameState.setupRooms();
         gameState.initialize();  // Any additional setup needed
     }

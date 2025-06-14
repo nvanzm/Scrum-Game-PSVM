@@ -14,6 +14,7 @@ public class FillInTheBlank implements QuestionBehavior {
 
         if (userInput.equalsIgnoreCase(question.getCorrectAnswerFITB())) {
             System.out.println("Correct!");
+            return "ADVANCE_ROOM";
         } else {
             System.out.println("Helaas, dat is niet juist. Probeer het nog een keer!");
             askQuestion(question);

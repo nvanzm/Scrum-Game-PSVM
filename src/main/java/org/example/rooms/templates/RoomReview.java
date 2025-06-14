@@ -12,7 +12,8 @@ import java.util.*;
 public class RoomReview extends Room {
     private String introduction;
     private QuestionBehavior questionBehavior;
-    private Question question;
+    private Answer answer = new Answer("Stakeholders", true);
+    private Question question = new Question("Wie geeft tijdens de Sprint Review feedback op het opgeleverde werk?", answer);
 
     public RoomReview(QuestionBehavior questionBehavior, String roomName, String welcomeMessage) {
         super(roomName, welcomeMessage);
