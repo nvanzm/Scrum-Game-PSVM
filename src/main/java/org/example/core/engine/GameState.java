@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameState {
-    List<Room> rooms;
-    Integer currentRoom = 0;
+    private List<Room> rooms;
+    private Integer currentRoom = 0;
 
     public GameState() {
         rooms = new ArrayList<>();
@@ -37,13 +37,13 @@ public class GameState {
         Room roomRetro = new RoomRetrospective(multipleChoiceBehavior,"Retrospective Room", "Welcome to the Retrospective Room! Let's reflect and improve.");
         Room roomTia = new RoomTia(multipleChoiceBehavior, "Tia's Room", "Welcome to Tia's room! Here you'll answer questions about Scrum.");
 
-        // Add room to your rooms collection
-        rooms.add(roomPlanning);
-        rooms.add(roomDaily);
-        rooms.add(roomBoard);
-        rooms.add(roomReview);
-        rooms.add(roomRetro);
-        rooms.add(roomTia);
+        // Add all room to rooms collection
+        this.addRoom(roomPlanning);
+        this.addRoom(roomDaily);
+        this.addRoom(roomBoard);
+        this.addRoom(roomReview);
+        this.addRoom(roomRetro);
+        this.addRoom(roomTia);
     }
 
     public void advanceRoom() {
