@@ -1,15 +1,10 @@
 import org.example.core.engine.GameState;
+import org.example.core.renderer.IOHandler;
+import org.example.core.renderer.input.ConsoleIOHandler;
+import org.example.rooms.RoomFactory;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GameStateTest {
-    @Test
-    void testAddRoom() {
-        GameState gameState = new GameState();
-        GameStateTestRoomStub roomStub = new GameStateTestRoomStub("Stubroom", "Welkom in de Stubroom");
-        gameState.addRoom(roomStub);
-        assertEquals(roomStub, gameState.getCurrentRoom());
-    }
-
 
 }

@@ -10,6 +10,7 @@ import org.example.menus.handlers.MainMenuHandler;
 import org.example.questions.strategies.MultipleChoiceBehavior;
 import org.example.rooms.Room;
 import org.example.questions.QuestionBehavior;
+import org.example.rooms.RoomFactory;
 import org.example.rooms.templates.*;
 
 public class GameEngine {
@@ -18,12 +19,13 @@ public class GameEngine {
     private final IOHandler ioHandler;  // Add this
     private final RenderableWrapper universalRenderer;
     private final InputService inputService = new InputService();
-    private GameState gameState = new GameState();
+    private GameState gameState;
 
     public GameEngine(Menu homeScherm, Menu chooseRoom) {
         this.mainMenu = homeScherm;
         this.chooseRoom = chooseRoom;
         this.ioHandler = new ConsoleIOHandler();
+        this.gameState = new GameState(new RoomFactory(ioHandler));
 
         MenuRenderer menuRenderer = new MenuRenderer();
         MainMenuHandler mainMenuHandler = new MainMenuHandler();
@@ -31,15 +33,8 @@ public class GameEngine {
     }
 
     public void launchGame() {
-        setupGame();
         gameLoop();
     }
-
-    private void setupGame() {
-        gameState.setupRooms();
-        gameState.initialize();  // Any additional setup needed
-    }
-
 
     public void gameLoop() {
         boolean running = true;
