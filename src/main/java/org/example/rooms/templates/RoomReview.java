@@ -10,7 +10,6 @@ import org.example.questions.strategies.Pair;
 import java.util.*;
 
 public class RoomReview extends Room {
-    private String introduction;
     private QuestionBehavior questionBehavior;
     private Answer answer = new Answer("Stakeholders", true);
     private Question question = new Question("Wie geeft tijdens de Sprint Review feedback op het opgeleverde werk?", answer);

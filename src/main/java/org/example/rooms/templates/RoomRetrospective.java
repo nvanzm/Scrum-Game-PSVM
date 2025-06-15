@@ -6,7 +6,6 @@ import org.example.rooms.Room;
 import org.example.questions.QuestionBehavior;
 
 public class RoomRetrospective extends Room {
-    private String introduction;
     private QuestionBehavior questionBehavior;
     private Question question = new Question("Wat is het belangrijkste doel van een retrospective in een Scrum-team?", new String[]{
             "Nieuwe features plannen voor de volgende sprint",

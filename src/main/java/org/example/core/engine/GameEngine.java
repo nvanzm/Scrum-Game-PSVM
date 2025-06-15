@@ -72,7 +72,10 @@ public class GameEngine {
                 switchToMenu(mainMenu);
                 yield false;
             }
-            case "EXIT" -> true;
+            case "EXIT" -> {
+                System.out.println("Exiting the game...");
+                yield true;
+            }
             default -> {
                 System.out.println("Invalid input.");
                 yield false;

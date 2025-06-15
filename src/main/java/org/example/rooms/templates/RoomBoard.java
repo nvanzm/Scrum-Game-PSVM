@@ -6,7 +6,6 @@ import org.example.rooms.Room;
 import org.example.questions.QuestionBehavior;
 
 public class RoomBoard extends Room {
-    private String introduction;
     private QuestionBehavior questionType;
     private Question question = new Question("Welk onderdeel hoort niet bij een sprintplanning?", new String[]{
             "Het team bepaalt hoeveel werk ze aankunnen",

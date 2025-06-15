@@ -7,7 +7,6 @@ import org.example.impediments.monster.Monster;
 import org.example.questions.QuestionBehavior;
 
 public class RoomDaily extends Room {
-    private String introduction;
     private QuestionBehavior questionType;
     private Answer answer = new Answer("Developer", true);
     private Question question = new Question("Welk teamlid zou het volgende zeggen: “Ik loop vast op een bug en heb hulp nodig”?", answer);
