@@ -1,12 +1,16 @@
 package org.example;
 
-import org.example.classes.MainMenu;
+import org.example.core.engine.GameEngine;
+import org.example.menus.RoomMenu;
+import org.example.menus.MainMenu;
+
 
 public class GameLauncher {
     public static void main(String[] args) {
-        MainMenu mainMenu = new MainMenu();
-        RoomMenu roomMenu = new RoomMenu();
-        Game game = new Game(mainMenu, roomMenu);
-        game.launchGameAndPauseGame();
+        MainMenu mainMenu = new MainMenu("Main Menu", "Welkom in de startkamer!", new String[]{"Start game", "Exit game"});
+        RoomMenu roomMenu = new RoomMenu("Roeom Menu", "HALLO!");
+
+        GameEngine engine = new GameEngine(mainMenu, roomMenu);
+        engine.launchGame();
     }
 }

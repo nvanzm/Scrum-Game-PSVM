@@ -1,0 +1,26 @@
+package org.example.rooms.templates;
+
+import org.example.questions.Question;
+import org.example.rooms.Room;
+import org.example.questions.QuestionBehavior;
+
+public class RoomPlanning extends Room{
+    private QuestionBehavior questionBehavior;
+    private Question question = new Question("Welk onderdeel hoort niet bij een sprintplanning?", new String[]{
+            "Het team bepaalt hoeveel werk ze aankunnen",
+            "Het team selecteert user stories uit de product backlog",
+            "Het team splitst stories op in taken",
+            "De Product Owner schrijft een uitgebreid eindrapport",
+    }, 4);
+
+    public RoomPlanning(QuestionBehavior questionBehavior, String roomName, String welcomeMessage) {
+        super(roomName, welcomeMessage);
+        this.questionBehavior = questionBehavior;
+    }
+
+    @Override
+    public String handleQuestion() {
+        return questionBehavior.askQuestion(question);
+    }
+
+}

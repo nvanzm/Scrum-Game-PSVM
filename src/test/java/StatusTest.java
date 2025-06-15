@@ -1,4 +1,4 @@
-import org.example.classes.Player;
+import org.example.core.player.Player;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
