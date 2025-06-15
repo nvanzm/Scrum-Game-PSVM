@@ -44,13 +44,24 @@ public class GameState {
     }
 
     public void advanceRoom() {
-//        System.out.println(rooms);
+        //Debug voor kamers
+        //System.out.println(rooms);
+
+        //Als de laatste kamer behaald is, heb je gewonnen.
         if (currentRoom == rooms.size() - 1) {
-            System.out.println("Congrats! You've succesfully completed the quiz!");
-            closeGame();
+            completedGame();
         }
 
         currentRoom++;
+    }
+
+    public void completedGame() {
+        System.out.println("Congrats! You've succesfully completed the quiz!");
+        closeGame();
+    }
+
+    public void closeGame() {
+        System.exit(0);
     }
 
     public Room getCurrentRoom() {
@@ -59,10 +70,6 @@ public class GameState {
 
     public Menu getMainMenu() {
         return new MainMenu("Main Menu", "Welkom in de startkamer!", new String[]{"Start game", "Exit game"});
-    }
-
-    public void closeGame() {
-        System.exit(0);
     }
 
     public void addRoom(Room room) {

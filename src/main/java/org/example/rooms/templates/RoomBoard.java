@@ -20,10 +20,6 @@ public class RoomBoard extends Room {
         this.questionType = questionType;
     }
 
-    public void introduction() {
-        System.out.println(introduction);
-    }
-
     public String handleQuestion() {
         return questionType.askQuestion(question);
     }

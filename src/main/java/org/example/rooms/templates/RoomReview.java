@@ -20,10 +20,6 @@ public class RoomReview extends Room {
         this.questionBehavior = questionBehavior;
     }
 
-    public void introduction() {
-        System.out.println(introduction);
-    }
-
     @Override
     public String handleQuestion() {
         return questionBehavior.askQuestion(question);

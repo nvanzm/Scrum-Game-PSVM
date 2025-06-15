@@ -17,10 +17,6 @@ public class RoomDaily extends Room {
         this.questionType = questionType;
     }
 
-    public void introduction() {
-        System.out.println(introduction);
-    }
-
     public String handleQuestion() {
         return questionType.askQuestion(question);
     }
