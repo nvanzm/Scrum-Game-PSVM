@@ -16,7 +16,7 @@ public abstract class Room {
     }
 
     public void runRoom() {
-        
+
     }
 
     public String getWelcomeMessage() {
