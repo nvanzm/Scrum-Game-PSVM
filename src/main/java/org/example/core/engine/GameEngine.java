@@ -20,7 +20,7 @@ public class GameEngine {
     private final GameState gameState = new GameState();
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public GameEngine(Menu homeScherm, Menu mainMenu) {
+    public GameEngine(Menu mainMenu, Menu homeScherm) {
         this.mainMenu = mainMenu;
         this.ioHandler = new ConsoleIOHandler();
         MenuRenderer menuRenderer = new MenuRenderer();

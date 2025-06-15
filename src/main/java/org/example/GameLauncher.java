@@ -7,7 +7,7 @@ import org.example.menus.MainMenu;
 public class GameLauncher {
     public static void main(String[] args) {
         MainMenu mainMenu = new MainMenu("Main Menu", "Welkom in de startkamer!", new String[]{"Start game", "Exit game"});
-        RoomMenu roomMenu = new RoomMenu("Room Menu", "HALLO!");
+        RoomMenu roomMenu = new RoomMenu("Roeom Menu", "HALLO!");
 
         GameEngine engine = new GameEngine(mainMenu, roomMenu);
         engine.launchGame();

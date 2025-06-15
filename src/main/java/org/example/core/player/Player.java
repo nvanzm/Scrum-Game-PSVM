@@ -10,7 +10,7 @@ public class Player implements UpdateSubscriber {
     private int jokersUsed;
     private final IOHandler ioHandler;
 
-    Player(){
+    public Player(){
         this.ioHandler = new ConsoleIOHandler();
     }
 
