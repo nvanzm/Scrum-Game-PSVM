@@ -3,15 +3,15 @@ package org.example.core.engine;
 
 import org.example.menus.MainMenu;
 import org.example.menus.Menu;
+import org.example.rooms.IRoomFactory;
 import org.example.rooms.Room;
-import org.example.rooms.RoomFactory;
 import java.util.List;
 
 public class GameState {
     private List<Room> rooms;
     private Integer currentRoom = 0;
 
-    public GameState(RoomFactory roomFactory) {
+    public GameState(IRoomFactory roomFactory) {
         this.rooms = roomFactory.createRooms();
     }
 
