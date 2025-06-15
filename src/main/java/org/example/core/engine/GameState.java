@@ -7,19 +7,21 @@ import org.example.rooms.Room;
 import java.util.List;
 
 public class GameState {
-    private List<Room> rooms;
-    private Integer currentRoom = 0;
+    private final List<Room> rooms;
+    private int currentRoom = 0;
+    private final IGameCloser gameCloser;
 
-    public GameState(IRoomFactory roomFactory) {
+    public GameState(IRoomFactory roomFactory, IGameCloser gameCloser) {
         this.rooms = roomFactory.createRooms();
+        this.gameCloser = gameCloser;
     }
 
     public void advanceRoom() {
         if (currentRoom == rooms.size() - 1) {
             completedGame();
+        } else {
+            currentRoom++;
         }
-
-        currentRoom++;
     }
 
     public Room getCurrentRoom() {
@@ -31,11 +33,11 @@ public class GameState {
     }
 
     public void completedGame() {
-        System.out.println("Congrats! You've succesfully completed the quiz!");
+        System.out.println("Congrats! You've successfully completed the quiz!");
         closeGame();
     }
 
     public void closeGame() {
-        System.exit(0);
+        gameCloser.close();
     }
 }

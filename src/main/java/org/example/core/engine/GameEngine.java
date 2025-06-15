@@ -22,7 +22,8 @@ public class GameEngine {
         this.mainMenu = homeScherm;
         this.chooseRoom = chooseRoom;
         this.ioHandler = new ConsoleIOHandler();
-        this.gameState = new GameState(new RoomFactory(ioHandler));
+
+        this.gameState = new GameState(new RoomFactory(ioHandler), new GameCloser());
 
         MenuRenderer menuRenderer = new MenuRenderer();
         MainMenuHandler mainMenuHandler = new MainMenuHandler();
