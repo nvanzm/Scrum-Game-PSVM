@@ -18,8 +18,7 @@ public class RoomTia extends Room {
         super(roomName, welcomeMessage);
         this.questionBehavior = questionBehavior;
     }
-
-
+    
     @Override
     public String handleQuestion() {
         return questionBehavior.askQuestion(question);

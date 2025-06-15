@@ -40,5 +40,4 @@ public class MultipleChoiceBehavior implements QuestionBehavior, AnswerValidator
     public boolean validateAnswer(Answer[] answers, int choice) {
         return answers[choice - 1].getCorrectness();
     }
-
 }

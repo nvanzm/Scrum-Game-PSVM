@@ -1,6 +1,5 @@
 package org.example.core.engine;
 
-
 import org.example.core.renderer.IOHandler;
 import org.example.core.renderer.input.ConsoleIOHandler;
 import org.example.menus.MainMenu;
@@ -8,8 +7,6 @@ import org.example.menus.Menu;
 import org.example.questions.QuestionBehavior;
 import org.example.questions.strategies.FillInTheBlank;
 import org.example.questions.strategies.MultipleChoiceBehavior;
-import org.example.questions.strategies.MultipleChoiceBehavior;
-import org.example.questions.strategies.Puzzle;
 import org.example.rooms.Room;
 import org.example.rooms.templates.*;
 
@@ -37,7 +34,7 @@ public class GameState {
         Room roomRetro = new RoomRetrospective(multipleChoiceBehavior,"Retrospective Room", "Welcome to the Retrospective Room! Let's reflect and improve.");
         Room roomTia = new RoomTia(multipleChoiceBehavior, "Tia's Room", "Welcome to Tia's room! Here you'll answer questions about Scrum.");
 
-        // Add room to your rooms collection
+//      Add room to your rooms collection
         rooms.add(roomPlanning);
         rooms.add(roomDaily);
         rooms.add(roomBoard);
@@ -49,7 +46,8 @@ public class GameState {
     public void advanceRoom() {
 //        System.out.println(rooms);
         if (currentRoom == rooms.size() - 1) {
-            return;
+            System.out.println("Congrats! You've succesfully completed the quiz!");
+            closeGame();
         }
 
         currentRoom++;
@@ -61,6 +59,10 @@ public class GameState {
 
     public Menu getMainMenu() {
         return new MainMenu("Main Menu", "Welkom in de startkamer!", new String[]{"Start game", "Exit game"});
+    }
+
+    public void closeGame() {
+        System.exit(0);
     }
 
     public void addRoom(Room room) {

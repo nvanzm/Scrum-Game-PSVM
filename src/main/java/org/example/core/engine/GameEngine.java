@@ -80,6 +80,10 @@ public class GameEngine {
                 switchToMenu(mainMenu);
                 yield false;
             }
+//            case "COMPLETED_ROOM" -> {
+//                System.out.println("Congrats! You've succesfully completed the quiz!");
+//                yield false;
+//            }
             case "EXIT" -> true;
             default -> {
                 System.out.println("Invalid input.");
