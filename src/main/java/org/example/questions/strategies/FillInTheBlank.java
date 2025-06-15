@@ -17,8 +17,7 @@ public class FillInTheBlank implements QuestionBehavior {
             return "ADVANCE_ROOM";
         } else {
             System.out.println("Helaas, dat is niet juist. Probeer het nog een keer!");
-            askQuestion(question);
+            return askQuestion(question);
         }
-        return "PLACEHOLDER";
     }
 }
