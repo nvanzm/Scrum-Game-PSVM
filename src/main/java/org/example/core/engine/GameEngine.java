@@ -4,26 +4,34 @@ import org.example.core.renderer.IOHandler;
 import org.example.core.renderer.input.ConsoleIOHandler;
 import org.example.core.renderer.input.InputService;
 import org.example.core.renderer.input.RoomInputHandler;
-import org.example.core.renderer.output.*;
+import org.example.core.renderer.output.MenuRenderer;
+import org.example.core.renderer.output.RenderableWrapper;
+import org.example.core.renderer.output.RoomRenderer;
 import org.example.menus.Menu;
 import org.example.menus.handlers.MainMenuHandler;
-import org.example.questions.strategies.MultipleChoiceBehavior;
 import org.example.rooms.Room;
-import org.example.questions.QuestionBehavior;
-import org.example.rooms.templates.*;
 
 public class GameEngine {
     private final Menu mainMenu;
     private final Menu chooseRoom;
-    private final IOHandler ioHandler;  // Add this
+    private final IOHandler ioHandler;
     private final RenderableWrapper universalRenderer;
-    private final InputService inputService = new InputService();
-    private GameState gameState = new GameState();
+    private final InputService inputService;
+    private final GameState gameState = new GameState();
 
-    public GameEngine(Menu homeScherm, Menu chooseRoom) {
-        this.mainMenu = homeScherm;
+    public GameEngine(Menu mainMenu, Menu chooseRoom) {
+        this(mainMenu, chooseRoom, new ConsoleIOHandler(), new InputService());
+    }
+
+    public GameEngine(Menu mainMenu, Menu chooseRoom, InputService inputService) {
+        this(mainMenu, chooseRoom, new ConsoleIOHandler(), inputService);
+    }
+
+    public GameEngine(Menu mainMenu, Menu chooseRoom, IOHandler ioHandler, InputService inputService) {
+        this.mainMenu = mainMenu;
         this.chooseRoom = chooseRoom;
-        this.ioHandler = new ConsoleIOHandler();
+        this.ioHandler = ioHandler;
+        this.inputService = inputService;
 
         MenuRenderer menuRenderer = new MenuRenderer();
         MainMenuHandler mainMenuHandler = new MainMenuHandler();
@@ -37,36 +45,28 @@ public class GameEngine {
 
     private void setupGame() {
         gameState.setupRooms();
-        gameState.initialize();  // Any additional setup needed
+        gameState.initialize();
     }
 
-
-    public void gameLoop() {
+    private void gameLoop() {
         boolean running = true;
 
         while (running) {
-            // Render the current item (menu or room)
             universalRenderer.render();
-            // Read input from the user
             String input = inputService.readLine();
             String intent = universalRenderer.handleInput(input);
-
-            if (handleIntent(intent)) {
-                running = false;
-            }
+            running = !handleIntent(intent);
         }
     }
 
     public boolean handleIntent(String intent) {
-        if (intent == null) {
-            return false;
-        }
+        if (intent == null) return false;
 
         return switch (intent) {
             case "ADVANCE_ROOM" -> {
                 gameState.advanceRoom();
-                System.out.println("You have advanced to room " + gameState.getCurrentRoom().getRoomName());
                 Room currentRoom = gameState.getCurrentRoom();
+                System.out.println("You have advanced to room: " + currentRoom.getRoomName());
                 switchToRoom(currentRoom);
                 yield false;
             }
@@ -80,11 +80,10 @@ public class GameEngine {
                 switchToMenu(mainMenu);
                 yield false;
             }
-//            case "COMPLETED_ROOM" -> {
-//                System.out.println("Congrats! You've succesfully completed the quiz!");
-//                yield false;
-//            }
-            case "EXIT" -> true;
+            case "EXIT" -> {
+                System.out.println("Exiting the game...");
+                yield true;
+            }
             default -> {
                 System.out.println("Invalid input.");
                 yield false;
@@ -98,7 +97,7 @@ public class GameEngine {
 
     public void switchToRoom(Room newRoom) {
         RoomInputHandler roomInputHandler = new RoomInputHandler(ioHandler, newRoom);
-        RoomRenderer roomRenderer = new RoomRenderer(ioHandler);  // Pass IOHandler to renderer
+        RoomRenderer roomRenderer = new RoomRenderer(ioHandler);
         universalRenderer.setItem(newRoom, roomRenderer, roomInputHandler);
     }
 }
