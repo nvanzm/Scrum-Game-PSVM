@@ -1,14 +1,18 @@
 package org.example.questions.strategies;
 
 import org.example.core.renderer.IOHandler;
+
 import org.example.hints.HintSelector;
 import org.example.questions.Question;
 import org.example.questions.Answer;
+import org.example.questions.Question;
 import org.example.questions.QuestionBehavior;
 import org.example.questions.displays.MultipleChoiceDisplayStrategy;
 import org.example.questions.displays.OutcomeDisplay;
 import org.example.questions.displays.QuestionDisplayStrategy;
 
+
+public class MultipleChoiceBehavior implements QuestionBehavior, AnswerValidator {
 import java.util.Scanner;
 
 public class MultipleChoiceBehavior implements QuestionBehavior, AnswerValidator<Answer[], Integer> {
@@ -23,7 +27,6 @@ public class MultipleChoiceBehavior implements QuestionBehavior, AnswerValidator
         this.ioHandler = ioHandler;
         this.hintSelector = hintSelector;
     }
-
 
     @Override
     public String askQuestion(Question question) {

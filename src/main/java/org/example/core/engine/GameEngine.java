@@ -8,8 +8,12 @@ import org.example.core.renderer.output.RenderableWrapper;
 import org.example.core.renderer.output.RoomRenderer;
 import org.example.menus.Menu;
 import org.example.menus.handlers.MainMenuHandler;
+import org.example.rooms.Room;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import org.example.rooms.IRoomFactory;
 import org.example.rooms.Room;
+
 
 public class GameEngine {
     private final IOHandler ioHandler;
@@ -17,6 +21,11 @@ public class GameEngine {
     private final RenderableWrapper universalRenderer;
     private final GameState gameState;
     private final Menu mainMenu;
+    private final IOHandler ioHandler;  // Add this
+    private final RenderableWrapper universalRenderer;
+    private final InputService inputService = new InputService();
+    private final GameState gameState = new GameState();
+    private static final Logger LOGGER = LogManager.getLogger();
     private final Menu chooseRoom;
 
     public GameEngine(GameEngineConfig config) {
@@ -54,15 +63,25 @@ public class GameEngine {
         return switch (intent) {
             case "ADVANCE_ROOM" -> {
                 gameState.advanceRoom();
-                System.out.println("You have advanced to room " + gameState.getCurrentRoom().getRoomName());
+                LOGGER.debug("Advancing to room: %s", gameState.getCurrentRoom());
+                Room currentRoom = gameState.getCurrentRoom();
+             
                 switchToRoom(gameState.getCurrentRoom());
+
                 yield false;
             }
             case "SWITCH_TO_ROOM" -> {
                 switchToRoom(gameState.getCurrentRoom());
                 yield false;
             }
+            case "CONTINUE_GAME" -> {
+                this.gameState.loadProgress();
+                Room currentRoom = gameState.getCurrentRoom();
+                switchToRoom(currentRoom);
+                yield false;
+            }
             case "SWITCH_TO_MENU" -> {
+
                 switchToMenu(gameState.getMainMenu());
                 yield false;
             }
@@ -71,7 +90,8 @@ public class GameEngine {
                 yield true;
             }
             default -> {
-                System.out.println("Invalid input.");
+                LOGGER.debug("Invalid input");
+                this.gameState.saveProgress();
                 yield false;
             }
         };

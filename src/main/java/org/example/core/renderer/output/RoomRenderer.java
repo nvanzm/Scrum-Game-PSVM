@@ -11,8 +11,8 @@ public class RoomRenderer implements Renderer<Room> {
 
     @Override
     public void render(Room room) {
-        System.out.println("\n=== " + room.getRoomName() + " ===");
-        System.out.println(room.getWelcomeMessage());
-        System.out.println("\nType 'back' to return to menu or any other key to continue...");
+        ioHandler.display("\n=== " + room.getRoomName() + " ===");
+        ioHandler.display(room.getWelcomeMessage());
+        ioHandler.display("\nType 'back' to return to menu or any other key to continue...");
     }
 }
