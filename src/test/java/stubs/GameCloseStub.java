@@ -1,3 +1,5 @@
+package stubs;
+
 import org.example.core.engine.IGameCloser;
 
 public class GameCloseStub implements IGameCloser {

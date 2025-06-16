@@ -1,3 +1,5 @@
+package stubs;
+
 import org.example.rooms.IRoomFactory;
 import org.example.rooms.Room;
 
