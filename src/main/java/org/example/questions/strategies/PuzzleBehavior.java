@@ -4,6 +4,7 @@ import org.example.core.renderer.IOHandler;
 import org.example.questions.Answer;
 import org.example.questions.Question;
 import org.example.questions.QuestionBehavior;
+import org.example.questions.displays.OutcomeDisplay;
 import org.example.questions.displays.PuzzleDisplayStrategy;
 import org.example.questions.displays.QuestionDisplayStrategy;
 
@@ -12,10 +13,12 @@ import java.util.*;
 public class PuzzleBehavior implements QuestionBehavior, AnswerValidator<List<Pair> ,List<Pair>> {
     private final QuestionDisplayStrategy displayStrategy;
     private final IOHandler ioHandler;
+    private final OutcomeDisplay outcomeDisplay;
 
     public PuzzleBehavior(IOHandler ioHandler) {
         this.displayStrategy = new PuzzleDisplayStrategy();
         this.ioHandler = ioHandler;
+        this.outcomeDisplay = new OutcomeDisplay();
     }
 
     @Override
@@ -29,10 +32,10 @@ public class PuzzleBehavior implements QuestionBehavior, AnswerValidator<List<Pa
 
             List<Pair> userPairs = PairGenerator.parsePairs(choice, options);
             if (validateAnswer(userPairs, correctPairs)) {
-                ioHandler.display("Correct!");
+                outcomeDisplay.displayCorrect(ioHandler, question);
                 return "ADVANCE_ROOM";
             } else {
-                ioHandler.display("Helaas, het anwtwoord is fout!");
+                outcomeDisplay.displayIncorrect(ioHandler);
                 askQuestion(question);
                 //joker of item gebruiken
             }

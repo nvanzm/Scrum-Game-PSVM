@@ -5,15 +5,19 @@ import org.example.questions.Question;
 import org.example.questions.Answer;
 import org.example.questions.QuestionBehavior;
 import org.example.questions.displays.MultipleChoiceDisplayStrategy;
+import org.example.questions.displays.OutcomeDisplay;
 import org.example.questions.displays.QuestionDisplayStrategy;
 
 public class MultipleChoiceBehavior implements QuestionBehavior, AnswerValidator<Answer[], Integer> {
     private final QuestionDisplayStrategy displayStrategy;
     private final IOHandler ioHandler;
+    private final OutcomeDisplay outcomeDisplay;
 
     public MultipleChoiceBehavior(IOHandler ioHandler) {
         this.displayStrategy = new MultipleChoiceDisplayStrategy();
+        this.outcomeDisplay = new OutcomeDisplay();
         this.ioHandler = ioHandler;
+
     }
 
 
@@ -26,10 +30,10 @@ public class MultipleChoiceBehavior implements QuestionBehavior, AnswerValidator
             Answer[] answers = question.getAnswers();
 
             if (validateAnswer(answers, choice)) {
-                ioHandler.display("Correct!");
+                outcomeDisplay.displayCorrect(ioHandler, question);
                 return "ADVANCE_ROOM";
             } else {
-                ioHandler.display("Helaas, dat is niet juist. Probeer het nog een keer!");
+                outcomeDisplay.displayIncorrect(ioHandler);
                 //joker of item gebruiken
             }
         }
