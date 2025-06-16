@@ -24,7 +24,7 @@ public class GameState {
         if (currentRoom == rooms.size() - 1) {
             completedGame();
         } else {
-            player.setCurrentRoom(currentRoom + 1);
+            player.setCurrentRoom(player.getCurrentRoom() + 1);
         }
     }
 
