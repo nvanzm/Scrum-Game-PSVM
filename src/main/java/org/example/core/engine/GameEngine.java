@@ -59,7 +59,7 @@ public class GameEngine {
         return switch (intent) {
             case "ADVANCE_ROOM" -> {
                 gameState.advanceRoom();
-                LOGGER.debug("Advancing to room: %s", gameState.getCurrentRoom());
+                LOGGER.debug("Advancing to room: {}", gameState.getCurrentRoom());
                 Room currentRoom = gameState.getCurrentRoom();
              
                 switchToRoom(gameState.getCurrentRoom());
