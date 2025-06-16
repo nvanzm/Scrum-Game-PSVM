@@ -1,12 +1,14 @@
 package org.example.core.renderer.output;
 
-import org.example.core.intents.Intent;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.example.menus.handlers.InputHandler;
 
 public class RenderableWrapper implements Renderable {
     private Object item;
     private Renderer<Object> renderer;
     private InputHandler inputHandler;
+    private static final Logger LOGGER = LogManager.getLogger();
 
     public RenderableWrapper(Object item, Renderer<?> renderer, InputHandler inputHandler) {
         this.item = item;
@@ -33,7 +35,7 @@ public class RenderableWrapper implements Renderable {
         if (inputHandler != null) {
             return inputHandler.handleInput(input);
         } else {
-            System.out.println("No input handler set.");
+            LOGGER.debug("No input handler set.");
             return null;
         }
     }

@@ -1,15 +1,22 @@
 package org.example.core.renderer.output;
 
+import org.example.core.renderer.IOHandler;
+import org.example.core.renderer.input.ConsoleIOHandler;
 import org.example.menus.Menu;
 
+import java.util.Arrays;
+
 public class MenuRenderer implements Renderer<Menu> {
+    IOHandler ioHandler;
+
+    public MenuRenderer() {
+        this.ioHandler = new ConsoleIOHandler();
+    }
     @Override
     public void render(Menu menu) {
-        System.out.println("== " + menu.getRoomName() + " ==");
-        System.out.println(menu.getWelcomeMessage());
+        ioHandler.display("== " + menu.getRoomName() + " ==");
+        ioHandler.display(menu.getWelcomeMessage());
 
-        for (int i = 0; i < menu.getOptions().length; i++) {
-            System.out.printf("%d. %s%n", i + 1, menu.getOptions()[i]);
-        }
+        ioHandler.displayOptionsNumbered(Arrays.asList(menu.getOptions()));
     }
 }

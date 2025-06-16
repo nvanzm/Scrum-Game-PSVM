@@ -9,7 +9,9 @@ import org.example.core.renderer.output.RoomRenderer;
 import org.example.menus.Menu;
 import org.example.menus.handlers.MainMenuHandler;
 import org.example.rooms.IRoomFactory;
-import org.example.rooms.Room;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
 
 public class GameEngine {
     private final IOHandler ioHandler;
@@ -25,7 +27,6 @@ public class GameEngine {
         this.ioHandler = config.ioHandler;
         this.inputService = config.inputService;
         this.gameState = new GameState(config.roomFactory, config.gameCloser, config.gameUI);
-
         MenuRenderer menuRenderer = new MenuRenderer();
         MainMenuHandler mainMenuHandler = new MainMenuHandler();
         this.universalRenderer = new RenderableWrapper(mainMenu, menuRenderer, mainMenuHandler);
@@ -54,16 +55,29 @@ public class GameEngine {
         return switch (intent) {
             case "ADVANCE_ROOM" -> {
                 gameState.advanceRoom();
-                System.out.println("You have advanced to room " + gameState.getCurrentRoom().getRoomName());
-                switchToRoom(gameState.getCurrentRoom());
+
+                LOGGER.debug("Advancing to room: %s", gameState.getCurrentRoom());
+                Room currentRoom = gameState.getCurrentRoom();
+                switchToRoom(currentRoom);
+
                 yield false;
             }
             case "SWITCH_TO_ROOM" -> {
                 switchToRoom(gameState.getCurrentRoom());
                 yield false;
             }
+            case "CONTINUE_GAME" -> {
+                this.gameState.loadProgress();
+                Room currentRoom = gameState.getCurrentRoom();
+                switchToRoom(currentRoom);
+                yield false;
+            }
             case "SWITCH_TO_MENU" -> {
+
                 switchToMenu(gameState.getMainMenu());
+
+                switchToMenu(mainMenu);
+
                 yield false;
             }
             case "EXIT" -> {
@@ -71,7 +85,8 @@ public class GameEngine {
                 yield true;
             }
             default -> {
-                System.out.println("Invalid input.");
+                LOGGER.debug("Invalid input");
+                this.gameState.saveProgress();
                 yield false;
             }
         };

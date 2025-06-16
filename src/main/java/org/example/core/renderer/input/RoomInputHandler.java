@@ -1,6 +1,5 @@
 package org.example.core.renderer.input;
 
-import org.example.core.intents.NavigationIntent;
 import org.example.core.renderer.IOHandler;
 import org.example.menus.handlers.InputHandler;
 import org.example.rooms.Room;
