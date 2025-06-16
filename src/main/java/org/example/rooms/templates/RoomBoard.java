@@ -12,7 +12,7 @@ public class RoomBoard extends Room {
             "Het team selecteert user stories uit de product backlog",
             "Het team splitst stories op in taken",
             "De Product Owner schrijft een uitgebreid eindrapport"
-    },4);
+    },4, "Scrumboard");
 
     public RoomBoard(QuestionBehavior questionType, String roomName, String welcomeMessage) {
         super(roomName, welcomeMessage);
