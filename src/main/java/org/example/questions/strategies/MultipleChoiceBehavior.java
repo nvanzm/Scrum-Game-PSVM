@@ -17,9 +17,9 @@ public class MultipleChoiceBehavior implements QuestionBehavior, AnswerValidator
     private final OutcomeDisplay outcomeDisplay;
     private final HintSelector hintSelector;
 
-    public MultipleChoiceBehavior(IOHandler ioHandler, HintSelector hintSelector) {
+    public MultipleChoiceBehavior(IOHandler ioHandler, HintSelector hintSelector, OutcomeDisplay outcomeDisplay) {
         this.displayStrategy = new MultipleChoiceDisplayStrategy();
-        this.outcomeDisplay = new OutcomeDisplay();
+        this.outcomeDisplay = outcomeDisplay;
         this.ioHandler = ioHandler;
         this.hintSelector = hintSelector;
     }
@@ -47,7 +47,7 @@ public class MultipleChoiceBehavior implements QuestionBehavior, AnswerValidator
     public void handleWrongAnswer() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Wil je een hint? (ja/nee)");
-        String input = scanner.nextLine();
+        String input = ioHandler.getTextInput();
 
         if (input.equalsIgnoreCase("ja")) {
             String hint = hintSelector.selectRandomHint().getHint();

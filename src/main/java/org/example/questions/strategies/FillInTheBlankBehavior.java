@@ -17,8 +17,8 @@ public class FillInTheBlankBehavior implements QuestionBehavior, AnswerValidator
     private final OutcomeDisplay outcomeDisplay;
     private final HintSelector hintSelector;
 
-    public FillInTheBlankBehavior(IOHandler ioHandler, HintSelector hintSelector) {
-        this.displayStrategy = new FillInTheBlankDisplayStrategy();
+    public FillInTheBlankBehavior(IOHandler ioHandler, HintSelector hintSelector, OutcomeDisplay outcomeDisplay) {
+            this.displayStrategy = new FillInTheBlankDisplayStrategy();
         this.ioHandler = ioHandler;
         this.outcomeDisplay = new OutcomeDisplay();
         this.hintSelector = hintSelector;

@@ -3,6 +3,7 @@ package org.example.rooms;
 import org.example.core.renderer.IOHandler;
 import org.example.hints.*;
 import org.example.questions.QuestionBehavior;
+import org.example.questions.displays.OutcomeDisplay;
 import org.example.questions.strategies.FillInTheBlankBehavior;
 import org.example.questions.strategies.MultipleChoiceBehavior;
 
@@ -15,23 +16,22 @@ import java.util.List;
 public class RoomFactory implements IRoomFactory {
 
     private final IOHandler ioHandler;
+    private final OutcomeDisplay outcomeDisplay;
 
-    public RoomFactory(IOHandler ioHandler) {
+    public RoomFactory(IOHandler ioHandler, OutcomeDisplay outcomeDisplay) {
         this.ioHandler = ioHandler;
+        this.outcomeDisplay = outcomeDisplay;
     }
 
     @Override
     public List<Room> createRooms() {
-//        QuestionBehavior multipleChoiceBehavior = new MultipleChoiceBehavior(ioHandler);
-//        QuestionBehavior fillInTheBlankBehavior = new FillInTheBlankBehavior(ioHandler);
-//        QuestionBehavior puzzleBehavior = new PuzzleBehavior(ioHandler);
 
-        QuestionBehavior multipleChoiceBehaviorPlanningRoom = new MultipleChoiceBehavior(ioHandler, new HintSelector(List.of(new FunnyHintRoomPlanning(), new HelpHintRoomPlanning())));
-        QuestionBehavior fillInTheBlankBehaviorDailyRoom = new FillInTheBlankBehavior(ioHandler, new HintSelector(List.of(new FunnyHintRoomDaily(), new HelpHintRoomDaily())));
-        QuestionBehavior multipleChoiceBehaviorBoardRoom = new MultipleChoiceBehavior(ioHandler, new HintSelector(List.of(new FunnyHintRoomBoard(), new HelpHintRoomBoard())));
-        QuestionBehavior fillInTheBlankBehaviorReviewRoom = new FillInTheBlankBehavior(ioHandler, new HintSelector(List.of(new FunnyHintRoomReview(), new HelpHintRoomReview())));
-        QuestionBehavior puzzleBehaviorRetroRoom = new PuzzleBehavior(ioHandler, new HintSelector(List.of(new FunnyHintRoomRetro(), new HelpHintRoomRetro())));
-        QuestionBehavior multipleChoiceBehaviorTiaRoom = new MultipleChoiceBehavior(ioHandler, new HintSelector(List.of(new FunnyHintRoomTia(), new HelpHintRoomTia())));
+        QuestionBehavior multipleChoiceBehaviorPlanningRoom = new MultipleChoiceBehavior(ioHandler, new HintSelector(List.of(new FunnyHintRoomPlanning(), new HelpHintRoomPlanning())), outcomeDisplay);
+        QuestionBehavior fillInTheBlankBehaviorDailyRoom = new FillInTheBlankBehavior(ioHandler, new HintSelector(List.of(new FunnyHintRoomDaily(), new HelpHintRoomDaily())), outcomeDisplay);
+        QuestionBehavior multipleChoiceBehaviorBoardRoom = new MultipleChoiceBehavior(ioHandler, new HintSelector(List.of(new FunnyHintRoomBoard(), new HelpHintRoomBoard())), outcomeDisplay);
+        QuestionBehavior fillInTheBlankBehaviorReviewRoom = new FillInTheBlankBehavior(ioHandler, new HintSelector(List.of(new FunnyHintRoomReview(), new HelpHintRoomReview())), outcomeDisplay);
+        QuestionBehavior puzzleBehaviorRetroRoom = new PuzzleBehavior(ioHandler, new HintSelector(List.of(new FunnyHintRoomRetro(), new HelpHintRoomRetro())), outcomeDisplay);
+        QuestionBehavior multipleChoiceBehaviorTiaRoom = new MultipleChoiceBehavior(ioHandler, new HintSelector(List.of(new FunnyHintRoomTia(), new HelpHintRoomTia())), outcomeDisplay);
 
         List<Room> rooms = new ArrayList<>();
         rooms.add(new RoomPlanning(multipleChoiceBehaviorPlanningRoom,"Planning Room", "Welcome to the Planning Room! Let's prepare for the next sprint."));
