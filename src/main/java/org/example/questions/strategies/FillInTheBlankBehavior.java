@@ -12,10 +12,10 @@ public class FillInTheBlankBehavior implements QuestionBehavior, AnswerValidator
     private final IOHandler ioHandler;
     private final OutcomeDisplay outcomeDisplay;
 
-    public FillInTheBlankBehavior(IOHandler ioHandler) {
+    public FillInTheBlankBehavior(IOHandler ioHandler, OutcomeDisplay outcomeDisplay) {
         this.displayStrategy = new FillInTheBlankDisplayStrategy();
         this.ioHandler = ioHandler;
-        this.outcomeDisplay = new OutcomeDisplay();
+        this.outcomeDisplay = outcomeDisplay;
     }
 
 

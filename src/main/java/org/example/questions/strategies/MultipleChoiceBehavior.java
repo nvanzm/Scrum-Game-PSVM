@@ -13,9 +13,9 @@ public class MultipleChoiceBehavior implements QuestionBehavior, AnswerValidator
     private final IOHandler ioHandler;
     private final OutcomeDisplay outcomeDisplay;
 
-    public MultipleChoiceBehavior(IOHandler ioHandler) {
+    public MultipleChoiceBehavior(IOHandler ioHandler, OutcomeDisplay outcomeDisplay) {
         this.displayStrategy = new MultipleChoiceDisplayStrategy();
-        this.outcomeDisplay = new OutcomeDisplay();
+        this.outcomeDisplay = outcomeDisplay;
         this.ioHandler = ioHandler;
 
     }

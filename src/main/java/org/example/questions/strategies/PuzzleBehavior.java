@@ -15,10 +15,10 @@ public class PuzzleBehavior implements QuestionBehavior, AnswerValidator<List<Pa
     private final IOHandler ioHandler;
     private final OutcomeDisplay outcomeDisplay;
 
-    public PuzzleBehavior(IOHandler ioHandler) {
+    public PuzzleBehavior(IOHandler ioHandler, OutcomeDisplay outcomeDisplay) {
         this.displayStrategy = new PuzzleDisplayStrategy();
         this.ioHandler = ioHandler;
-        this.outcomeDisplay = new OutcomeDisplay();
+        this.outcomeDisplay = outcomeDisplay;
     }
 
     @Override

@@ -2,6 +2,7 @@ package org.example.rooms;
 
 import org.example.core.renderer.IOHandler;
 import org.example.questions.QuestionBehavior;
+import org.example.questions.displays.OutcomeDisplay;
 import org.example.questions.strategies.FillInTheBlankBehavior;
 import org.example.questions.strategies.MultipleChoiceBehavior;
 
@@ -14,16 +15,18 @@ import java.util.List;
 public class RoomFactory implements IRoomFactory {
 
     private final IOHandler ioHandler;
+    private final OutcomeDisplay outcomeDisplay;
 
-    public RoomFactory(IOHandler ioHandler) {
+    public RoomFactory(IOHandler ioHandler, OutcomeDisplay outcomeDisplay) {
         this.ioHandler = ioHandler;
+        this.outcomeDisplay = outcomeDisplay;
     }
 
     @Override
     public List<Room> createRooms() {
-        QuestionBehavior multipleChoiceBehavior = new MultipleChoiceBehavior(ioHandler);
-        QuestionBehavior fillInTheBlankBehavior = new FillInTheBlankBehavior(ioHandler);
-        QuestionBehavior puzzleBehavior = new PuzzleBehavior(ioHandler);
+        QuestionBehavior multipleChoiceBehavior = new MultipleChoiceBehavior(ioHandler, outcomeDisplay);
+        QuestionBehavior fillInTheBlankBehavior = new FillInTheBlankBehavior(ioHandler, outcomeDisplay);
+        QuestionBehavior puzzleBehavior = new PuzzleBehavior(ioHandler, outcomeDisplay);
 
         List<Room> rooms = new ArrayList<>();
         rooms.add(new RoomPlanning(multipleChoiceBehavior,"Planning Room", "Welcome to the Planning Room! Let's prepare for the next sprint."));

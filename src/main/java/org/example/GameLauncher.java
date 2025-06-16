@@ -7,6 +7,7 @@ import org.example.core.renderer.input.InputService;
 import org.example.menus.RoomMenu;
 import org.example.menus.MainMenu;
 import org.example.core.engine.GameUI;
+import org.example.questions.displays.OutcomeDisplay;
 import org.example.rooms.IRoomFactory;
 import org.example.rooms.RoomFactory;
 
@@ -16,8 +17,9 @@ public class GameLauncher {
         RoomMenu roomMenu = new RoomMenu("Room Menu", "HALLO!");
 
         IOHandler ioHandler = new ConsoleIOHandler();
+        OutcomeDisplay outcomeDisplay = new OutcomeDisplay();
         InputService inputService = new InputService();
-        IRoomFactory roomFactory = new RoomFactory(ioHandler);
+        IRoomFactory roomFactory = new RoomFactory(ioHandler, outcomeDisplay);
         IGameCloser gameCloser = new GameCloser();
         IGameUI gameUI = new GameUI();
 
