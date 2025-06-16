@@ -30,7 +30,7 @@ public class GameEngineTest {
         IGameUI gameUIStub = new GameUIStub();
         IRoomFactory roomFactoryStub = new RoomFactoryStub();
         IGameCloser gameCloserStub = new GameCloseStub();
-        InputService inputServiceStub = new InputServiceStub("2");
+        InputService inputServiceStub = new InputServiceStub("3");
         IOHandler ioHandlerStub = new IOHandlerStub(
                 List.of(1, 2),
                 List.of("2")
