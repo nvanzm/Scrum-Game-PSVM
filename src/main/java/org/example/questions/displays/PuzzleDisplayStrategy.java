@@ -15,7 +15,6 @@ public class PuzzleDisplayStrategy implements QuestionDisplayStrategy {
 
         Map<String, Answer> options = question.getOptions();
 
-        System.out.println("Koppel de volgende items:");
         for (Map.Entry<String, Answer> entry : options.entrySet()) {
             System.out.println(entry.getKey() + " - " + entry.getValue().getAnswerText());
         }
