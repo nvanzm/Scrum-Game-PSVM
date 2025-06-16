@@ -3,37 +3,37 @@ package org.example.questions.strategies;
 import org.example.core.renderer.IOHandler;
 import org.example.hints.HintSelector;
 import org.example.questions.Question;
-import org.example.questions.Answer;
-import org.example.questions.Question;
 import org.example.questions.QuestionBehavior;
-import org.example.questions.displays.MultipleChoiceDisplayStrategy;
+import org.example.questions.displays.FillInTheBlankDisplayStrategy;
 import org.example.questions.displays.OutcomeDisplay;
 import org.example.questions.displays.QuestionDisplayStrategy;
+import org.example.rooms.templates.RoomPlanning;
 
 import java.util.Scanner;
 
-public class MultipleChoiceBehavior implements QuestionBehavior, AnswerValidator<Answer[], Integer> {
+public class FillInTheBlankBehavior implements QuestionBehavior, AnswerValidator<String, String> {
     private final QuestionDisplayStrategy displayStrategy;
     private final IOHandler ioHandler;
     private final OutcomeDisplay outcomeDisplay;
     private final HintSelector hintSelector;
 
-    public MultipleChoiceBehavior(IOHandler ioHandler, HintSelector hintSelector) {
-        this.displayStrategy = new MultipleChoiceDisplayStrategy();
-        this.outcomeDisplay = new OutcomeDisplay();
+    public FillInTheBlankBehavior(IOHandler ioHandler, HintSelector hintSelector) {
+        this.displayStrategy = new FillInTheBlankDisplayStrategy();
         this.ioHandler = ioHandler;
+        this.outcomeDisplay = new OutcomeDisplay();
         this.hintSelector = hintSelector;
     }
+
 
     @Override
     public String askQuestion(Question question) {
         while (true) {
             displayStrategy.displayQuestion(question, ioHandler);
 
-            int choice = ioHandler.getNumericInput();
-            Answer[] answers = question.getAnswers();
+            String choice = ioHandler.getTextInput();
+            String answer = question.getCorrectAnswerFITB();
 
-            if (validateAnswer(answers, choice)) {
+            if (validateAnswer(answer, choice)) {
                 outcomeDisplay.displayCorrect(ioHandler, question);
                 return "ADVANCE_ROOM";
             } else {
@@ -57,7 +57,9 @@ public class MultipleChoiceBehavior implements QuestionBehavior, AnswerValidator
         }
     }
 
-    public boolean validateAnswer(Answer[] answers, Integer choice) {
-        return answers[choice - 1].getCorrectness();
+
+    @Override
+    public boolean validateAnswer(String answer, String choice) {
+        return choice.equalsIgnoreCase(answer);
     }
 }

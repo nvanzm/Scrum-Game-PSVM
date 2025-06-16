@@ -1,6 +1,5 @@
 package org.example.core.renderer.input;
 
-
 import java.util.Scanner;
 
 public class InputService {

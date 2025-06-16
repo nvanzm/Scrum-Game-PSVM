@@ -15,10 +15,6 @@ public abstract class Room {
         this.welcomeMessage = Objects.requireNonNullElse(welcomeMessage, "Welcome to the Standard Room!");
     }
 
-    public void runRoom() {
-
-    }
-
     public String getWelcomeMessage() {
         return welcomeMessage;
     }

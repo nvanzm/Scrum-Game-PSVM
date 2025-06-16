@@ -2,26 +2,25 @@ package org.example.questions.strategies;
 
 import org.example.core.renderer.IOHandler;
 import org.example.hints.HintSelector;
-import org.example.questions.Question;
 import org.example.questions.Answer;
 import org.example.questions.Question;
 import org.example.questions.QuestionBehavior;
-import org.example.questions.displays.MultipleChoiceDisplayStrategy;
 import org.example.questions.displays.OutcomeDisplay;
+import org.example.questions.displays.PuzzleDisplayStrategy;
 import org.example.questions.displays.QuestionDisplayStrategy;
 
-import java.util.Scanner;
+import java.util.*;
 
-public class MultipleChoiceBehavior implements QuestionBehavior, AnswerValidator<Answer[], Integer> {
+public class PuzzleBehavior implements QuestionBehavior, AnswerValidator<List<Pair> ,List<Pair>> {
     private final QuestionDisplayStrategy displayStrategy;
     private final IOHandler ioHandler;
     private final OutcomeDisplay outcomeDisplay;
     private final HintSelector hintSelector;
 
-    public MultipleChoiceBehavior(IOHandler ioHandler, HintSelector hintSelector) {
-        this.displayStrategy = new MultipleChoiceDisplayStrategy();
-        this.outcomeDisplay = new OutcomeDisplay();
+    public PuzzleBehavior(IOHandler ioHandler, HintSelector hintSelector) {
+        this.displayStrategy = new PuzzleDisplayStrategy();
         this.ioHandler = ioHandler;
+        this.outcomeDisplay = new OutcomeDisplay();
         this.hintSelector = hintSelector;
     }
 
@@ -30,10 +29,12 @@ public class MultipleChoiceBehavior implements QuestionBehavior, AnswerValidator
         while (true) {
             displayStrategy.displayQuestion(question, ioHandler);
 
-            int choice = ioHandler.getNumericInput();
-            Answer[] answers = question.getAnswers();
+            Map<String, Answer> options = question.getOptions();
+            String choice = ioHandler.getTextInput();
+            List<Pair> correctPairs = question.getCorrectPairs();
 
-            if (validateAnswer(answers, choice)) {
+            List<Pair> userPairs = PairGenerator.parsePairs(choice, options);
+            if (validateAnswer(userPairs, correctPairs)) {
                 outcomeDisplay.displayCorrect(ioHandler, question);
                 return "ADVANCE_ROOM";
             } else {
@@ -57,7 +58,8 @@ public class MultipleChoiceBehavior implements QuestionBehavior, AnswerValidator
         }
     }
 
-    public boolean validateAnswer(Answer[] answers, Integer choice) {
-        return answers[choice - 1].getCorrectness();
+    @Override
+    public boolean validateAnswer(List<Pair> correctPairs, List<Pair> userPairs) {
+        return new HashSet<>(userPairs).equals(new HashSet<>(correctPairs));
     }
 }

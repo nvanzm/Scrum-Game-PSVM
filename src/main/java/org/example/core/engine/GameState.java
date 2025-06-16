@@ -1,6 +1,6 @@
 package org.example.core.engine;
 
-
+import org.example.rooms.IRoomFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.example.core.player.Player;
@@ -12,23 +12,26 @@ import org.example.menus.MainMenu;
 import org.example.menus.Menu;
 import org.example.questions.QuestionBehavior;
 import org.example.questions.strategies.MultipleChoiceBehavior;
-import org.example.rooms.Room;
-import org.example.rooms.templates.*;
 
-import java.util.ArrayList;
+import org.example.rooms.Room;
 import java.util.List;
 
 public class GameState {
-    List<Room> rooms;
+
+
+    private final List<Room> rooms;
+    private int currentRoom = 0;
+    private final IGameCloser gameCloser;
+    private final IGameUI gameUI;
     Player player;
     SaveHandler saveHandler;
     private static final Logger LOGGER = LogManager.getLogger();
 
 
-    public GameState() {
-        rooms = new ArrayList<>();
-        this.player = new Player();
-        this.saveHandler = new JsonHandler();
+    public GameState(IRoomFactory roomFactory, IGameCloser gameCloser, IGameUI gameUI) {
+        this.rooms = roomFactory.createRooms();
+        this.gameCloser = gameCloser;
+        this.gameUI = gameUI;
     }
 
     public void setupRooms() {
@@ -60,7 +63,7 @@ public class GameState {
     }
 
     public Menu getMainMenu() {
-        return new MainMenu("Main Menu", "Welkom in de startkamer!", new String[]{"Start game", "Exit game"});
+        return gameUI.createMainMenu();
     }
 
     public void saveProgress() {
@@ -74,7 +77,14 @@ public class GameState {
     public void addRoom(Room room) {
         rooms.add(room);
     }
+    
+     public void completedGame() {
+        gameUI.showCompletionMessage();
+        closeGame();
+    }
 
+    public void closeGame() {
+        gameCloser.close();
 
 
     public void initialize() {
