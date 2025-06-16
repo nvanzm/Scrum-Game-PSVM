@@ -3,7 +3,6 @@ package org.example.rooms.templates;
 import org.example.questions.Answer;
 import org.example.questions.Question;
 import org.example.questions.strategies.Pair;
-import org.example.questions.strategies.PairGenerator;
 import org.example.rooms.Room;
 import org.example.questions.QuestionBehavior;
 

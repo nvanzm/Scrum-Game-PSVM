@@ -11,6 +11,7 @@ import org.example.menus.handlers.MainMenuHandler;
 import org.example.rooms.IRoomFactory;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
+import org.example.rooms.Room;
 
 
 public class GameEngine {

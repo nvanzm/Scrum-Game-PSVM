@@ -85,7 +85,7 @@ public class GameState {
 
     public void closeGame() {
         gameCloser.close();
-
+    }
 
     public void initialize() {
         // Is nog leeg, ik wil hier de startup logica voor gamestate samenvoegen/aanroepen - Casper
