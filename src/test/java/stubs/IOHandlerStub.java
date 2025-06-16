@@ -35,6 +35,11 @@ public class IOHandlerStub implements IOHandler {
     }
 
     @Override
+    public void displayOptionsNumbered(List<String> options) {
+
+    }
+
+    @Override
     public int getNumericInput() {
         return numericInputs.isEmpty() ? -1 : numericInputs.poll();
     }

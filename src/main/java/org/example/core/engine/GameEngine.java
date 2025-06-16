@@ -11,8 +11,7 @@ import org.example.menus.handlers.MainMenuHandler;
 import org.example.rooms.Room;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
-import org.example.rooms.IRoomFactory;
-import org.example.rooms.Room;
+
 
 
 public class GameEngine {
@@ -20,13 +19,11 @@ public class GameEngine {
     private final InputService inputService;
     private final RenderableWrapper universalRenderer;
     private final GameState gameState;
-    private final Menu mainMenu;
     private static final Logger LOGGER = LogManager.getLogger();
-    private final Menu chooseRoom;
 
     public GameEngine(GameEngineConfig config) {
-        this.mainMenu = config.mainMenu;
-        this.chooseRoom = config.chooseRoom;
+        Menu mainMenu = config.mainMenu;
+        Menu chooseRoom = config.chooseRoom;
         this.ioHandler = config.ioHandler;
         this.inputService = config.inputService;
         this.gameState = new GameState(config.roomFactory, config.gameCloser, config.gameUI);

@@ -5,7 +5,6 @@ import org.example.core.renderer.IOHandler;
 import org.example.hints.HintSelector;
 import org.example.questions.Question;
 import org.example.questions.Answer;
-import org.example.questions.Question;
 import org.example.questions.QuestionBehavior;
 import org.example.questions.displays.MultipleChoiceDisplayStrategy;
 import org.example.questions.displays.OutcomeDisplay;
