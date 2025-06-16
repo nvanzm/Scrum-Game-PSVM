@@ -14,29 +14,30 @@ public class PuzzleBehavior implements QuestionBehavior, AnswerValidator<List<Pa
     private final QuestionDisplayStrategy displayStrategy;
     private final IOHandler ioHandler;
 
-    public PuzzleBehavior(QuestionDisplayStrategy displayStrategy, IOHandler ioHandler) {
+    public PuzzleBehavior(IOHandler ioHandler) {
         this.displayStrategy = new PuzzleDisplayStrategy();
         this.ioHandler = ioHandler;
     }
 
     @Override
-    public void askQuestion(Question question) {
-        displayStrategy.displayQuestion(question, ioHandler);
+    public String askQuestion(Question question) {
+        while (true) {
+            displayStrategy.displayQuestion(question, ioHandler);
 
-        Map<String, Answer> options = question.getOptions();
-        String choice = ioHandler.getTextInput();
-        List<Pair> correctPairs = question.getCorrectPairs();
+            Map<String, Answer> options = question.getOptions();
+            String choice = ioHandler.getTextInput();
+            List<Pair> correctPairs = question.getCorrectPairs();
 
-        List<Pair> userPairs = PairGenerator.parsePairs(choice, options);
-        if (validateAnswer(userPairs, correctPairs)) {
-            ioHandler.display("Correct!");
+            List<Pair> userPairs = PairGenerator.parsePairs(choice, options);
+            if (validateAnswer(userPairs, correctPairs)) {
+                ioHandler.display("Correct!");
+                return "ADVANCE_ROOM";
+            } else {
+                ioHandler.display("Helaas, het anwtwoord is fout!");
+                askQuestion(question);
+                //joker of item gebruiken
+            }
         }
-        else {
-            ioHandler.display("Helaas, het anwtwoord is fout!");
-            askQuestion(question);
-            //joker of item gebruiken
-        }
-
     }
 
     @Override

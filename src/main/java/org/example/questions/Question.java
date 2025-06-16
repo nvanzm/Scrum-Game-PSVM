@@ -8,7 +8,7 @@ import java.util.Map;
 public class Question {
     private String questionText;
     private Answer[] answers;
-    private Answer answerC;
+    private Answer fillInTheBlankAnswer;
     private List<Pair> correctPairs;
     private Map<String, Answer> options;
 
@@ -21,10 +21,10 @@ public class Question {
         answers[correctAnswer - 1].setCorrectness(true);
     }
 
-    public Question(String questionText, Answer answerC) {
+    public Question(String questionText, Answer fillInTheBlankAnswer) {
         this.questionText = questionText;
-        this.answerC = answerC;
-        answerC.setCorrectness(true);
+        this.fillInTheBlankAnswer = fillInTheBlankAnswer;
+        fillInTheBlankAnswer.setCorrectness(true);
     }
 
     public Question(String questionText, Map<String, Answer> options, List<Pair> correctPairs) {
@@ -42,7 +42,7 @@ public class Question {
     }
 
     public String getCorrectAnswerFITB() {
-        return answerC.getAnswerText();
+        return fillInTheBlankAnswer.getAnswerText();
     }
 
     public String getCorrectAnswerMC() {

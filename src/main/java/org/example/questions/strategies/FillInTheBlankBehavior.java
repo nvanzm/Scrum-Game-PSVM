@@ -11,25 +11,27 @@ public class FillInTheBlankBehavior implements QuestionBehavior, AnswerValidator
     private final QuestionDisplayStrategy displayStrategy;
     private final IOHandler ioHandler;
 
-    public FillInTheBlankBehavior(QuestionDisplayStrategy displayStrategy, IOHandler ioHandler) {
+    public FillInTheBlankBehavior(IOHandler ioHandler) {
         this.displayStrategy = new FillInTheBlankDisplayStrategy();
         this.ioHandler = ioHandler;
     }
 
 
     @Override
-    public void askQuestion(Question question) {
-        displayStrategy.displayQuestion(question, ioHandler);
+    public String askQuestion(Question question) {
+        while (true) {
+            displayStrategy.displayQuestion(question, ioHandler);
 
-        String choice = ioHandler.getTextInput();
-        String answer = question.getCorrectAnswerFITB();
+            String choice = ioHandler.getTextInput();
+            String answer = question.getCorrectAnswerFITB();
 
-        if (validateAnswer(answer, choice)){
-            System.out.println("Correct!");
-        }else{
-            System.out.println("Helaas, dat is niet juist");
-            askQuestion(question);
-            //joker of item gebruiken
+            if (validateAnswer(answer, choice)) {
+                System.out.println("Correct!");
+                return "ADVANCE_ROOM";
+            } else {
+                System.out.println("Helaas, dat is niet juist");
+                //joker of item gebruiken
+            }
         }
     }
 

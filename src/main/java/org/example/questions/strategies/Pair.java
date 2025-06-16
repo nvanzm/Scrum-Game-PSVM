@@ -13,14 +13,6 @@ public class Pair {
         this.value = value;
     }
 
-    public String getKey() {
-        return key;
-    }
-
-    public Answer getValue() {
-        return value;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
