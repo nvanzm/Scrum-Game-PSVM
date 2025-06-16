@@ -21,7 +21,8 @@ public class GameLauncher {
         IGameCloser gameCloser = new GameCloser();
         IGameUI gameUI = new GameUI();
 
-        GameEngine engine = new GameEngine(mainMenu, roomMenu, ioHandler, inputService, roomFactory, gameCloser, gameUI);
+        GameEngineConfig config = new GameEngineConfig(mainMenu, roomMenu, ioHandler, inputService, roomFactory, gameCloser, gameUI);
+        GameEngine engine = new GameEngine(config);
         engine.launchGame();
     }
 }

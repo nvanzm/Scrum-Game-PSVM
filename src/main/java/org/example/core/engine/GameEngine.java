@@ -19,20 +19,12 @@ public class GameEngine {
     private final Menu mainMenu;
     private final Menu chooseRoom;
 
-    public GameEngine(
-            Menu mainMenu,
-            Menu chooseRoom,
-            IOHandler ioHandler,
-            InputService inputService,
-            IRoomFactory roomFactory,
-            IGameCloser gameCloser,
-            IGameUI gameUI
-    ) {
-        this.mainMenu = mainMenu;
-        this.chooseRoom = chooseRoom;
-        this.ioHandler = ioHandler;
-        this.inputService = inputService;
-        this.gameState = new GameState(roomFactory, gameCloser, gameUI);
+    public GameEngine(GameEngineConfig config) {
+        this.mainMenu = config.mainMenu;
+        this.chooseRoom = config.chooseRoom;
+        this.ioHandler = config.ioHandler;
+        this.inputService = config.inputService;
+        this.gameState = new GameState(config.roomFactory, config.gameCloser, config.gameUI);
 
         MenuRenderer menuRenderer = new MenuRenderer();
         MainMenuHandler mainMenuHandler = new MainMenuHandler();

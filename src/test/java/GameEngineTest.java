@@ -1,57 +1,51 @@
 import org.example.core.engine.GameEngine;
 import org.example.core.engine.IGameCloser;
 import org.example.core.engine.IGameUI;
+import org.example.core.engine.GameEngineConfig;
 import org.example.core.renderer.IOHandler;
+import org.example.core.renderer.input.InputService;
 import org.example.menus.MainMenu;
 import org.example.menus.RoomMenu;
-import org.example.core.renderer.input.InputService;
 import org.example.rooms.IRoomFactory;
 import org.junit.jupiter.api.Test;
 import stubs.*;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class GameEngineTest {
 
     @Test
-    void testGameIsStartedAndEnded() {
+    void testGameStartsAndEndsCleanly() {
         MainMenu mainMenu = new MainMenu("Main Menu", "Welkom!", new String[]{"Start game", "Exit game"});
         RoomMenu roomMenu = new RoomMenu("Room Menu", "Room!");
-        GameEngine engine = getGameEngine(mainMenu, roomMenu);
+        GameEngine engine = createGameEngine(mainMenu, roomMenu);
 
-        try {
-            engine.launchGame();
-            System.out.println("✅ Game is gestart en netjes gestopt.");
-        } catch (Exception e) {
-            System.out.println("❌ Fout tijdens starten van de game: " + e.getMessage());
-            fail("Exception thrown during game launch: " + e.getMessage());
-        }
+        assertDoesNotThrow(engine::launchGame, "GameEngine threw an exception during execution.");
+        System.out.println("✅ Game is gestart en netjes gestopt.");
     }
 
-    //Functie gemaakt ivm lange overbodige code (Code Smell: Long Method)
-    private static GameEngine getGameEngine(MainMenu mainMenu, RoomMenu roomMenu) {
+    private GameEngine createGameEngine(MainMenu mainMenu, RoomMenu roomMenu) {
         IGameUI gameUIStub = new GameUIStub();
-        IRoomFactory stubFactory = new RoomFactoryStub();
-        IGameCloser stubGameCloser = new GameCloseStub();
+        IRoomFactory roomFactoryStub = new RoomFactoryStub();
+        IGameCloser gameCloserStub = new GameCloseStub();
         InputService inputServiceStub = new InputServiceStub("2");
         IOHandler ioHandlerStub = new IOHandlerStub(
                 List.of(1, 2),
-                List.of("testinput")
+                List.of("2")
         );
 
-        GameEngine engine = new GameEngine(
+        GameEngineConfig config = new GameEngineConfig(
                 mainMenu,
                 roomMenu,
                 ioHandlerStub,
                 inputServiceStub,
-                stubFactory,
-                stubGameCloser,
+                roomFactoryStub,
+                gameCloserStub,
                 gameUIStub
         );
-        return engine;
+
+        return new GameEngine(config);
     }
 }
-
-//Test gelukt!
