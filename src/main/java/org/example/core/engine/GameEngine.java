@@ -21,10 +21,6 @@ public class GameEngine {
     private final RenderableWrapper universalRenderer;
     private final GameState gameState;
     private final Menu mainMenu;
-    private final IOHandler ioHandler;  // Add this
-    private final RenderableWrapper universalRenderer;
-    private final InputService inputService = new InputService();
-    private final GameState gameState = new GameState();
     private static final Logger LOGGER = LogManager.getLogger();
     private final Menu chooseRoom;
 
@@ -75,7 +71,7 @@ public class GameEngine {
                 yield false;
             }
             case "CONTINUE_GAME" -> {
-                this.gameState.loadProgress();
+//                this.gameState.loadProgress();
                 Room currentRoom = gameState.getCurrentRoom();
                 switchToRoom(currentRoom);
                 yield false;
@@ -91,7 +87,7 @@ public class GameEngine {
             }
             default -> {
                 LOGGER.debug("Invalid input");
-                this.gameState.saveProgress();
+//                this.gameState.saveProgress();
                 yield false;
             }
         };

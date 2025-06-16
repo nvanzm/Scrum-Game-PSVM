@@ -10,10 +10,8 @@ import org.example.questions.QuestionBehavior;
 import org.example.questions.displays.MultipleChoiceDisplayStrategy;
 import org.example.questions.displays.OutcomeDisplay;
 import org.example.questions.displays.QuestionDisplayStrategy;
-
-
-public class MultipleChoiceBehavior implements QuestionBehavior, AnswerValidator {
 import java.util.Scanner;
+
 
 public class MultipleChoiceBehavior implements QuestionBehavior, AnswerValidator<Answer[], Integer> {
     private final QuestionDisplayStrategy displayStrategy;

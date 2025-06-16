@@ -23,6 +23,7 @@ public class GameState {
     private int currentRoom = 0;
     private final IGameCloser gameCloser;
     private final IGameUI gameUI;
+    private Player player = new Player();
 
     public GameState(IRoomFactory roomFactory, IGameCloser gameCloser, IGameUI gameUI) {
         this.rooms = roomFactory.createRooms();
