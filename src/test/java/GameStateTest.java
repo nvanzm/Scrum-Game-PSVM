@@ -1,4 +1,4 @@
-import org.example.core.engine.GameState;
+import org.example.core.engine.*;
 import org.example.rooms.IRoomFactory;
 import org.example.rooms.Room;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,9 @@ public class GameStateTest {
     @Test
     void testGetCurrentRoomAndAdvanceRoom() {
         IRoomFactory stubFactory = new RoomFactoryStub();
-        GameState gameState = new GameState(stubFactory);
+        IGameCloser stubGameCloser = new GameCloseStub();
+        IGameUI gameUIStub = new GameUIStub();
+        GameState gameState = new GameState(stubFactory, stubGameCloser, gameUIStub);
 
         Room current = gameState.getCurrentRoom();
         assertEquals("Stub Room 1", current.getRoomName());

@@ -10,7 +10,6 @@ import org.example.questions.strategies.Pair;
 import java.util.*;
 
 public class RoomReview extends Room {
-    private String introduction;
     private QuestionBehavior questionBehavior;
     private Answer answer = new Answer("Stakeholders", true);
     private Question question = new Question("Wie geeft tijdens de Sprint Review feedback op het opgeleverde werk?", answer);
@@ -18,10 +17,6 @@ public class RoomReview extends Room {
     public RoomReview(QuestionBehavior questionBehavior, String roomName, String welcomeMessage) {
         super(roomName, welcomeMessage);
         this.questionBehavior = questionBehavior;
-    }
-
-    public void introduction() {
-        System.out.println(introduction);
     }
 
     @Override

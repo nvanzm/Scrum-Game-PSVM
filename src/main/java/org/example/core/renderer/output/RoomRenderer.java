@@ -16,4 +16,3 @@ public class RoomRenderer implements Renderer<Room> {
         System.out.println("\nType 'back' to return to menu or any other key to continue...");
     }
 }
-
