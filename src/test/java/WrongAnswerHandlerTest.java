@@ -18,7 +18,7 @@ public class WrongAnswerHandlerTest {
     @Test
     public void testWrongAnswer() {
         IOHandler ioHandler = new IOHandlerStub(
-                java.util.List.of(1),
+                java.util.List.of(1,2),
                 java.util.List.of("Ja"));
         Question question = new Question("testtekst", new String[]{"ans", "ans2"}, 2, "bla");
         OutcomeDisplayMock outcomeDisplayMock = new OutcomeDisplayMock();
