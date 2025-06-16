@@ -74,7 +74,6 @@ public class GameEngine {
                 yield false;
             }
             case "SWITCH_TO_MENU" -> {
-
                 switchToMenu(gameState.getMainMenu());
                 yield false;
             }

@@ -15,9 +15,6 @@ import org.example.questions.displays.OutcomeDisplay;
 import org.example.rooms.IRoomFactory;
 import org.example.rooms.RoomFactory;
 
-import java.util.List;
-
-
 public class GameLauncher {
     public static void main(String[] args) {
         MainMenu mainMenu = new MainMenu("Main Menu", "Welkom in de startkamer!", new String[]{"Start game", "Exit game"});

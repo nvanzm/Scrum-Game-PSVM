@@ -9,7 +9,6 @@ import java.util.List;
 public class GameState {
 
     private final List<Room> rooms;
-    private int currentRoom = 0;
     private final IGameCloser gameCloser;
     private final IGameUI gameUI;
     private Player player = new Player();
