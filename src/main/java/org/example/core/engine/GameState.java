@@ -21,7 +21,7 @@ public class GameState {
     }
 
     public void advanceRoom() {
-        if (currentRoom == rooms.size() - 1) {
+        if (player.getCurrentRoom() == rooms.size() - 1) {
             completedGame();
         } else {
             player.setCurrentRoom(player.getCurrentRoom() + 1);
