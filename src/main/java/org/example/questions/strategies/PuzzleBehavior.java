@@ -17,7 +17,7 @@ public class PuzzleBehavior implements QuestionBehavior, AnswerValidator<List<Pa
     private final OutcomeDisplay outcomeDisplay;
     private final HintSelector hintSelector;
 
-    public PuzzleBehavior(IOHandler ioHandler, HintSelector hintSelector) {
+    public PuzzleBehavior(IOHandler ioHandler, HintSelector hintSelector, OutcomeDisplay outcomeDisplay) {
         this.displayStrategy = new PuzzleDisplayStrategy();
         this.ioHandler = ioHandler;
         this.outcomeDisplay = new OutcomeDisplay();
