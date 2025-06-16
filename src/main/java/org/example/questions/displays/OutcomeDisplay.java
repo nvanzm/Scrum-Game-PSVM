@@ -2,6 +2,7 @@ package org.example.questions.displays;
 
 import org.example.core.renderer.IOHandler;
 import org.example.questions.Question;
+import org.example.rooms.templates.RoomPlanning;
 
 public class OutcomeDisplay {
     public void displayCorrect(IOHandler ioHandler, Question question) {
