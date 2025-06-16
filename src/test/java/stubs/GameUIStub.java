@@ -1,3 +1,5 @@
+package stubs;
+
 import org.example.core.engine.IGameUI;
 import org.example.menus.Menu;
 

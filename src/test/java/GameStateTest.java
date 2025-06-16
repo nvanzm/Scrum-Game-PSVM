@@ -2,6 +2,9 @@ import org.example.core.engine.*;
 import org.example.rooms.IRoomFactory;
 import org.example.rooms.Room;
 import org.junit.jupiter.api.Test;
+import stubs.GameCloseStub;
+import stubs.GameUIStub;
+import stubs.RoomFactoryStub;
 
 import static org.junit.jupiter.api.Assertions.*;
 
