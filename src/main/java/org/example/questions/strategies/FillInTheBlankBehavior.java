@@ -3,7 +3,6 @@ package org.example.questions.strategies;
 import org.example.core.renderer.IOHandler;
 import org.example.questions.Question;
 import org.example.questions.QuestionBehavior;
-import org.example.questions.displays.AnswerValidator;
 import org.example.questions.displays.FillInTheBlankDisplayStrategy;
 import org.example.questions.displays.QuestionDisplayStrategy;
 
