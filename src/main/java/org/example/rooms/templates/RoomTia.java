@@ -12,7 +12,7 @@ public class RoomTia extends Room {
             "Een streng plan opleggen dat altijd gevolgd moet worden",
             "Werknemers controleren met dagelijkse statusrapporten",
             "Flexibel en iteratief waarde leveren met continue verbetering"
-    },4);
+    },4, "Scrum");
 
     public RoomTia(QuestionBehavior questionBehavior, String roomName, String welcomeMessage) {
         super(roomName, welcomeMessage);

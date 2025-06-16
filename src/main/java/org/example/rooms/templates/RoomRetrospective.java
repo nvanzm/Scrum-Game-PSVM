@@ -32,7 +32,7 @@ public class RoomRetrospective extends Room {
                 "2. Aandachtspunten die verbetering nodig hebben\n" +
                 "3. Acties of afspraken voor de toekomst";
 
-        this.question = new Question(vraagtekst, options, correctPairs);
+        this.question = new Question(vraagtekst, options, correctPairs, "Retrospective");
     }
 
     @Override

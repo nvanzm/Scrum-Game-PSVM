@@ -11,7 +11,7 @@ public class RoomPlanning extends Room{
             "Het team selecteert user stories uit de product backlog",
             "Het team splitst stories op in taken",
             "De Product Owner schrijft een uitgebreid eindrapport",
-    }, 4);
+    }, 4, "Scrumplanning");
 
     public RoomPlanning(QuestionBehavior questionBehavior, String roomName, String welcomeMessage) {
         super(roomName, welcomeMessage);

@@ -36,7 +36,6 @@ public class PuzzleBehavior implements QuestionBehavior, AnswerValidator<List<Pa
                 return "ADVANCE_ROOM";
             } else {
                 outcomeDisplay.displayIncorrect(ioHandler);
-                askQuestion(question);
                 //joker of item gebruiken
             }
         }
