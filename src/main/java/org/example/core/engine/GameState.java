@@ -1,6 +1,5 @@
 package org.example.core.engine;
 
-import org.example.menus.MainMenu;
 import org.example.menus.Menu;
 import org.example.rooms.IRoomFactory;
 import org.example.rooms.Room;
@@ -10,10 +9,12 @@ public class GameState {
     private final List<Room> rooms;
     private int currentRoom = 0;
     private final IGameCloser gameCloser;
+    private final IGameUI gameUI;
 
-    public GameState(IRoomFactory roomFactory, IGameCloser gameCloser) {
+    public GameState(IRoomFactory roomFactory, IGameCloser gameCloser, IGameUI gameUI) {
         this.rooms = roomFactory.createRooms();
         this.gameCloser = gameCloser;
+        this.gameUI = gameUI;
     }
 
     public void advanceRoom() {
@@ -29,11 +30,11 @@ public class GameState {
     }
 
     public Menu getMainMenu() {
-        return new MainMenu("Main Menu", "Welkom in de startkamer!", new String[]{"Start game", "Exit game"});
+        return gameUI.createMainMenu();
     }
 
     public void completedGame() {
-        System.out.println("Congrats! You've successfully completed the quiz!");
+        gameUI.showCompletionMessage();
         closeGame();
     }
 
