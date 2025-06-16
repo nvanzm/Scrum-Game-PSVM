@@ -16,12 +16,14 @@ public class PuzzleBehavior implements QuestionBehavior, AnswerValidator<List<Pa
     private final IOHandler ioHandler;
     private final OutcomeDisplay outcomeDisplay;
     private final HintSelector hintSelector;
+    private final WrongAnswerHandler wrongAnswerHandler;
 
-    public PuzzleBehavior(IOHandler ioHandler, HintSelector hintSelector, OutcomeDisplay outcomeDisplay) {
+    public PuzzleBehavior(IOHandler ioHandler, HintSelector hintSelector, OutcomeDisplay outcomeDisplay, WrongAnswerHandler wrongAnswerHandler) {
         this.displayStrategy = new PuzzleDisplayStrategy();
         this.ioHandler = ioHandler;
-        this.outcomeDisplay = new OutcomeDisplay();
+        this.outcomeDisplay = outcomeDisplay;
         this.hintSelector = hintSelector;
+        this.wrongAnswerHandler = wrongAnswerHandler;
     }
 
     @Override
@@ -40,23 +42,11 @@ public class PuzzleBehavior implements QuestionBehavior, AnswerValidator<List<Pa
             } else {
                 outcomeDisplay.displayIncorrect(ioHandler);
                 //joker of item gebruiken
-                handleWrongAnswer();
+                wrongAnswerHandler.handleWrongAnswer(hintSelector, ioHandler);
             }
         }
     }
 
-    public void handleWrongAnswer() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Wil je een hint? (ja/nee)");
-        String input = scanner.nextLine();
-
-        if (input.equalsIgnoreCase("ja")) {
-            String hint = hintSelector.selectRandomHint().getHint();
-            System.out.println(hint);
-        } else {
-            System.out.println("Geen hint gekozen.");
-        }
-    }
 
     @Override
     public boolean validateAnswer(List<Pair> correctPairs, List<Pair> userPairs) {

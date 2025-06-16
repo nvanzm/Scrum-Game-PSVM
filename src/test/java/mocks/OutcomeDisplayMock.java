@@ -1,4 +1,4 @@
-package stubs;
+package mocks;
 
 import org.example.core.renderer.IOHandler;
 import org.example.questions.Question;

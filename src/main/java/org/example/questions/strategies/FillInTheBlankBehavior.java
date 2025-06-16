@@ -16,12 +16,14 @@ public class FillInTheBlankBehavior implements QuestionBehavior, AnswerValidator
     private final IOHandler ioHandler;
     private final OutcomeDisplay outcomeDisplay;
     private final HintSelector hintSelector;
+    private final WrongAnswerHandler wrongAnswerHandler;
 
-    public FillInTheBlankBehavior(IOHandler ioHandler, HintSelector hintSelector, OutcomeDisplay outcomeDisplay) {
+    public FillInTheBlankBehavior(IOHandler ioHandler, HintSelector hintSelector, OutcomeDisplay outcomeDisplay, WrongAnswerHandler wrongAnswerHandler) {
             this.displayStrategy = new FillInTheBlankDisplayStrategy();
         this.ioHandler = ioHandler;
-        this.outcomeDisplay = new OutcomeDisplay();
+        this.outcomeDisplay = outcomeDisplay;
         this.hintSelector = hintSelector;
+        this.wrongAnswerHandler = wrongAnswerHandler;
     }
 
 
@@ -39,21 +41,8 @@ public class FillInTheBlankBehavior implements QuestionBehavior, AnswerValidator
             } else {
                 outcomeDisplay.displayIncorrect(ioHandler);
                 //joker of item gebruiken
-                handleWrongAnswer();
+                wrongAnswerHandler.handleWrongAnswer(hintSelector, ioHandler);
             }
-        }
-    }
-
-    public void handleWrongAnswer() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Wil je een hint? (ja/nee)");
-        String input = scanner.nextLine();
-
-        if (input.equalsIgnoreCase("ja")) {
-            String hint = hintSelector.selectRandomHint().getHint();
-            System.out.println(hint);
-        } else {
-            System.out.println("Geen hint gekozen.");
         }
     }
 

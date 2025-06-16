@@ -17,12 +17,14 @@ public class MultipleChoiceBehavior implements QuestionBehavior, AnswerValidator
     private final IOHandler ioHandler;
     private final OutcomeDisplay outcomeDisplay;
     private final HintSelector hintSelector;
+    private final WrongAnswerHandler wrongAnswerHandler;
 
-    public MultipleChoiceBehavior(IOHandler ioHandler, HintSelector hintSelector, OutcomeDisplay outcomeDisplay) {
+    public MultipleChoiceBehavior(IOHandler ioHandler, HintSelector hintSelector, OutcomeDisplay outcomeDisplay, WrongAnswerHandler wrongAnswerHandler) {
         this.displayStrategy = new MultipleChoiceDisplayStrategy();
         this.outcomeDisplay = outcomeDisplay;
         this.ioHandler = ioHandler;
         this.hintSelector = hintSelector;
+        this.wrongAnswerHandler = wrongAnswerHandler;
     }
 
     @Override
@@ -39,21 +41,8 @@ public class MultipleChoiceBehavior implements QuestionBehavior, AnswerValidator
             } else {
                 outcomeDisplay.displayIncorrect(ioHandler);
                 //joker of item gebruiken
-                handleWrongAnswer();
+                wrongAnswerHandler.handleWrongAnswer(hintSelector, ioHandler);
             }
-        }
-    }
-
-    public void handleWrongAnswer() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Wil je een hint? (ja/nee)");
-        String input = ioHandler.getTextInput();
-
-        if (input.equalsIgnoreCase("ja")) {
-            String hint = hintSelector.selectRandomHint().getHint();
-            System.out.println(hint);
-        } else {
-            System.out.println("Geen hint gekozen.");
         }
     }
 

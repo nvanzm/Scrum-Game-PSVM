@@ -12,6 +12,7 @@ import org.example.menus.RoomMenu;
 import org.example.menus.MainMenu;
 import org.example.core.engine.GameUI;
 import org.example.questions.displays.OutcomeDisplay;
+import org.example.questions.strategies.WrongAnswerHandler;
 import org.example.rooms.IRoomFactory;
 import org.example.rooms.RoomFactory;
 
@@ -22,8 +23,9 @@ public class GameLauncher {
 
         IOHandler ioHandler = new ConsoleIOHandler();
         OutcomeDisplay outcomeDisplay = new OutcomeDisplay();
+        WrongAnswerHandler wrongAnswerHandler = new WrongAnswerHandler();
         InputService inputService = new InputService();
-        IRoomFactory roomFactory = new RoomFactory(ioHandler, outcomeDisplay);
+        IRoomFactory roomFactory = new RoomFactory(ioHandler, outcomeDisplay, wrongAnswerHandler);
         IGameCloser gameCloser = new GameCloser();
         IGameUI gameUI = new GameUI();
 
