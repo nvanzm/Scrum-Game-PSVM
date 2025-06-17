@@ -18,15 +18,9 @@ public class GameEngineTest {
 
     @Test
     void testGameStartsAndEndsCleanly() {
+        // Arrange
         MainMenu mainMenu = new MainMenu("Main Menu", "Welkom!", new String[]{"Start game", "Exit game"});
         RoomMenu roomMenu = new RoomMenu("Room Menu", "Room!");
-        GameEngine engine = createGameEngine(mainMenu, roomMenu);
-
-        assertDoesNotThrow(engine::launchGame, "GameEngine threw an exception during execution.");
-        System.out.println("✅ Game is gestart en netjes gestopt.");
-    }
-
-    private GameEngine createGameEngine(MainMenu mainMenu, RoomMenu roomMenu) {
         IGameUI gameUIStub = new GameUIStub();
         IRoomFactory roomFactoryStub = new RoomFactoryStub();
         IGameCloser gameCloserStub = new GameCloseStub();
@@ -35,7 +29,6 @@ public class GameEngineTest {
                 List.of(1, 2),
                 List.of("2")
         );
-
         GameEngineConfig config = new GameEngineConfig(
                 mainMenu,
                 roomMenu,
@@ -45,7 +38,10 @@ public class GameEngineTest {
                 gameCloserStub,
                 gameUIStub
         );
+        GameEngine engine = new GameEngine(config);
 
-        return new GameEngine(config);
+        // Act & Assert
+        assertDoesNotThrow(engine::launchGame, "GameEngine threw an exception during execution.");
+        System.out.println("✅ Game is gestart en netjes gestopt.");
     }
 }
