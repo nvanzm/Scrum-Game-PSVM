@@ -1,5 +1,10 @@
 package org.example.rooms.templates;
 
+import org.example.events.GameEvent;
+import org.example.events.IncorrectAnswerEvent;
+import org.example.events.ItemUsageEvent;
+import org.example.events.NewGameEvent;
+import org.example.impediments.monster.factories.MonsterFactory;
 import org.example.questions.Answer;
 import org.example.questions.Question;
 import org.example.questions.strategies.Pair;
@@ -13,8 +18,8 @@ public class RoomRetrospective extends Room {
     private Question question;
 
 
-    public RoomRetrospective(QuestionBehavior questionBehavior, String roomName, String welcomeMessage) {
-        super(roomName, welcomeMessage);
+    public RoomRetrospective(QuestionBehavior questionBehavior, String roomName, String welcomeMessage, MonsterFactory monsterFactory) {
+        super(roomName, welcomeMessage, monsterFactory);
         this.questionBehavior = questionBehavior;
         Map<String, Answer> options = new LinkedHashMap<>();
         options.put("a", new Answer("Wat ging goed", false));
@@ -35,8 +40,19 @@ public class RoomRetrospective extends Room {
     }
 
     @Override
-    public String handleQuestion() {
+    public GameEvent handleQuestion() {
         return questionBehavior.askQuestion(question);
+    }
+
+    @Override
+    public void update(GameEvent event) {
+        if (event instanceof IncorrectAnswerEvent incorrectAnswerEvent && incorrectAnswerEvent.getQuestion().equals(question)) {
+            LOGGER.info("RoomRetrospective: Monster spawned!");
+            this.monster = monsterFactory.createMonster();
+        } else if (event instanceof ItemUsageEvent itemUsageEvent && itemUsageEvent.getItemName().equals("nuke") && hasMonster()) {
+            LOGGER.info("RoomRetrospective: Monster removed!");
+            clearMonster();
+        }
     }
 
 }

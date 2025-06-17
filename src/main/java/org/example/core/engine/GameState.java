@@ -4,6 +4,7 @@ import org.example.core.player.Player;
 import org.example.menus.Menu;
 import org.example.rooms.IRoomFactory;
 import org.example.rooms.Room;
+
 import java.util.List;
 
 public class GameState {
@@ -17,6 +18,10 @@ public class GameState {
         this.rooms = roomFactory.createRooms();
         this.gameCloser = gameCloser;
         this.gameUI = gameUI;
+    }
+
+    public List<Room> getRooms() {
+        return rooms;
     }
 
     public void advanceRoom() {
@@ -43,4 +48,5 @@ public class GameState {
     public void closeGame() {
         gameCloser.close();
     }
+
 }

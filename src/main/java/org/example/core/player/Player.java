@@ -2,16 +2,25 @@ package org.example.core.player;
 
 import org.example.core.renderer.IOHandler;
 import org.example.core.renderer.input.ConsoleIOHandler;
-import org.example.updater.UpdateSubscriber;
+import org.example.events.GameEvent;
+import org.example.events.ItemUsageEvent;
+import org.example.updater.GameEventSubscriber;
 
-public class Player implements UpdateSubscriber {
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+public class Player implements GameEventSubscriber {
     private int currentRoom;
     private int roomsDone;
     private int jokersUsed;
+    private Set<String> inventory = new HashSet<>();
     private final IOHandler ioHandler;
 
     public Player(){
         this.ioHandler = new ConsoleIOHandler();
+        inventory.add("nuke");
     }
 
     public int getCurrentRoom() {
@@ -38,5 +47,11 @@ public class Player implements UpdateSubscriber {
 
     public void jokerUsed() {
         jokersUsed++;
+    }
+
+    public void update(GameEvent event) {
+        if (event instanceof ItemUsageEvent itemUsageEvent) {
+            inventory.remove(itemUsageEvent.getItemName());
+        }
     }
 }

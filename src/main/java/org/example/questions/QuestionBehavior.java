@@ -1,5 +1,7 @@
 package org.example.questions;
 
+import org.example.events.GameEvent;
+
 public interface QuestionBehavior {
-    String askQuestion(Question question);
+    GameEvent askQuestion(Question question);
 }

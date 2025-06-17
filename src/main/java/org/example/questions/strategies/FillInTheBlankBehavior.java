@@ -1,15 +1,15 @@
 package org.example.questions.strategies;
 
 import org.example.core.renderer.IOHandler;
+import org.example.events.CorrectEvent;
+import org.example.events.GameEvent;
+import org.example.events.IncorrectAnswerEvent;
 import org.example.hints.HintSelector;
 import org.example.questions.Question;
 import org.example.questions.QuestionBehavior;
 import org.example.questions.displays.FillInTheBlankDisplayStrategy;
 import org.example.questions.displays.OutcomeDisplay;
 import org.example.questions.displays.QuestionDisplayStrategy;
-import org.example.rooms.templates.RoomPlanning;
-
-import java.util.Scanner;
 
 public class FillInTheBlankBehavior implements QuestionBehavior, AnswerValidator<String, String> {
     private final QuestionDisplayStrategy displayStrategy;
@@ -19,7 +19,7 @@ public class FillInTheBlankBehavior implements QuestionBehavior, AnswerValidator
     private final WrongAnswerHandler wrongAnswerHandler;
 
     public FillInTheBlankBehavior(IOHandler ioHandler, HintSelector hintSelector, OutcomeDisplay outcomeDisplay, WrongAnswerHandler wrongAnswerHandler) {
-            this.displayStrategy = new FillInTheBlankDisplayStrategy();
+        this.displayStrategy = new FillInTheBlankDisplayStrategy();
         this.ioHandler = ioHandler;
         this.outcomeDisplay = outcomeDisplay;
         this.hintSelector = hintSelector;
@@ -28,8 +28,7 @@ public class FillInTheBlankBehavior implements QuestionBehavior, AnswerValidator
 
 
     @Override
-    public String askQuestion(Question question) {
-        while (true) {
+    public GameEvent askQuestion(Question question) {
             displayStrategy.displayQuestion(question, ioHandler);
 
             String choice = ioHandler.getTextInput();
@@ -37,13 +36,12 @@ public class FillInTheBlankBehavior implements QuestionBehavior, AnswerValidator
 
             if (validateAnswer(answer, choice)) {
                 outcomeDisplay.displayCorrect(ioHandler, question);
-                return "ADVANCE_ROOM";
+                return new CorrectEvent();
             } else {
                 outcomeDisplay.displayIncorrect(ioHandler);
-                //joker of item gebruiken
                 wrongAnswerHandler.handleWrongAnswer(hintSelector, ioHandler);
+                return new IncorrectAnswerEvent(question);
             }
-        }
     }
 
 

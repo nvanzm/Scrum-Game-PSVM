@@ -1,6 +1,9 @@
 package org.example.questions.strategies;
 
 import org.example.core.renderer.IOHandler;
+import org.example.events.CorrectEvent;
+import org.example.events.GameEvent;
+import org.example.events.IncorrectAnswerEvent;
 import org.example.hints.HintSelector;
 import org.example.questions.Answer;
 import org.example.questions.Question;
@@ -27,8 +30,7 @@ public class PuzzleBehavior implements QuestionBehavior, AnswerValidator<List<Pa
     }
 
     @Override
-    public String askQuestion(Question question) {
-        while (true) {
+    public GameEvent askQuestion(Question question) {
             displayStrategy.displayQuestion(question, ioHandler);
 
             Map<String, Answer> options = question.getOptions();
@@ -38,13 +40,13 @@ public class PuzzleBehavior implements QuestionBehavior, AnswerValidator<List<Pa
             List<Pair> userPairs = PairGenerator.parsePairs(choice, options);
             if (validateAnswer(userPairs, correctPairs)) {
                 outcomeDisplay.displayCorrect(ioHandler, question);
-                return "ADVANCE_ROOM";
+                return new CorrectEvent();
             } else {
                 outcomeDisplay.displayIncorrect(ioHandler);
                 //joker of item gebruiken
                 wrongAnswerHandler.handleWrongAnswer(hintSelector, ioHandler);
+                return new IncorrectAnswerEvent(question);
             }
-        }
     }
 
 

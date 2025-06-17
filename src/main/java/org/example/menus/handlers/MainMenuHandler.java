@@ -1,19 +1,19 @@
 package org.example.menus.handlers;
 
 
+import org.example.events.*;
 
 public class MainMenuHandler implements InputHandler {
     @Override
-    public String handleInput(String input) {
+    public GameEvent handleInput(String input) {
         if (input == null) {
             return null;
         }
 
         return switch (input) {
-            case "1" -> "CONTINUE_GAME";
-            case "2" -> "SWITCH_TO_ROOM";
-            case "3" -> "EXIT";
-            default -> "Your input is invalid";
+            case "1" -> new NewGameEvent();
+            case "2" -> new ExitGameEvent();
+            default -> new IncorrectInputEvent();
         };
     }
 }

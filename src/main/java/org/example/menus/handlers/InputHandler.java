@@ -1,5 +1,7 @@
 package org.example.menus.handlers;
 
+import org.example.events.GameEvent;
+
 public interface InputHandler {
-    String handleInput(String input);
+    GameEvent handleInput(String input);
 }

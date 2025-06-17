@@ -2,6 +2,9 @@ package org.example.questions.strategies;
 
 import org.example.core.renderer.IOHandler;
 
+import org.example.events.CorrectEvent;
+import org.example.events.GameEvent;
+import org.example.events.IncorrectAnswerEvent;
 import org.example.hints.HintSelector;
 import org.example.questions.Question;
 import org.example.questions.Answer;
@@ -9,7 +12,6 @@ import org.example.questions.QuestionBehavior;
 import org.example.questions.displays.MultipleChoiceDisplayStrategy;
 import org.example.questions.displays.OutcomeDisplay;
 import org.example.questions.displays.QuestionDisplayStrategy;
-import java.util.Scanner;
 
 
 public class MultipleChoiceBehavior implements QuestionBehavior, AnswerValidator<Answer[], Integer> {
@@ -28,8 +30,7 @@ public class MultipleChoiceBehavior implements QuestionBehavior, AnswerValidator
     }
 
     @Override
-    public String askQuestion(Question question) {
-        while (true) {
+    public GameEvent askQuestion(Question question) {
             displayStrategy.displayQuestion(question, ioHandler);
 
             int choice = ioHandler.getNumericInput();
@@ -37,13 +38,14 @@ public class MultipleChoiceBehavior implements QuestionBehavior, AnswerValidator
 
             if (validateAnswer(answers, choice)) {
                 outcomeDisplay.displayCorrect(ioHandler, question);
-                return "ADVANCE_ROOM";
+                return new CorrectEvent();
             } else {
                 outcomeDisplay.displayIncorrect(ioHandler);
                 //joker of item gebruiken
                 wrongAnswerHandler.handleWrongAnswer(hintSelector, ioHandler);
+                return new IncorrectAnswerEvent(question);
             }
-        }
+
     }
 
     public boolean validateAnswer(Answer[] answers, Integer choice) {
