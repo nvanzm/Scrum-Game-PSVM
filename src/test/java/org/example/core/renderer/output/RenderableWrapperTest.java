@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class RenderableWrapperTest {
 
     @Test
-    void testRender_WithValidItemAndRenderer() {
+    void testRenderWithValidItemAndRenderer() {
         // Arrange
         Object mockItem = new Object();
         TestRenderer mockRenderer = new TestRenderer();
@@ -26,7 +26,7 @@ class RenderableWrapperTest {
     }
 
     @Test
-    void testRender_WithNoRenderer_ShouldDoNothing() {
+    void testRenderWithNoRendererShouldDoNothing() {
         // Arrange
         Object mockItem = new Object();
         InputHandler mockInputHandler = new TestInputHandler();
@@ -38,7 +38,7 @@ class RenderableWrapperTest {
     }
 
     @Test
-    void testRender_WithNoItem_ShouldDoNothing() {
+    void testRenderWithNoItemShouldDoNothing() {
         // Arrange
         TestRenderer mockRenderer = new TestRenderer();
         InputHandler mockInputHandler = new TestInputHandler();
@@ -53,7 +53,7 @@ class RenderableWrapperTest {
     }
 
     @Test
-    void testHandleInput_WithValidInputHandler() {
+    void testHandleInputWithValidInputHandler() {
         // Arrange
         String testInput = "test_input";
         GameEvent expectedEvent = new GameEvent() {
@@ -75,7 +75,7 @@ class RenderableWrapperTest {
     }
 
     @Test
-    void testHandleInput_WithNoInputHandler_ShouldReturnNull() {
+    void testHandleInputWithNoInputHandlerShouldReturnNull() {
         // Arrange
         RenderableWrapper wrapper = new RenderableWrapper(null, null, null);
 
